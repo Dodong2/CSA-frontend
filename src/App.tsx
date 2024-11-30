@@ -16,17 +16,32 @@ function App() {
 
 
   //Pages
-  // const User = lazy(() => import('./pages/User'))
-  const Home = lazy(() => import("./pages/Home"));
-  
+  //Auth Page
+  const Register = lazy(() => import('./pages/AuthPage/RegisterPage'))
+  const Login = lazy(() => import('./pages/AuthPage/LoginPage'))
+  const VerifyOTP = lazy(() => import('./pages/AuthPage/VerifyOTPPages'))
+  // User Page
+  const Introduction = lazy(() => import('./pages/employer & user Page/introductionPage'));
+  const Home = lazy(() => import('./pages/employer & user Page/HomePage'));
+  const PostJob = lazy(() => import('./pages/employer & user Page/PostJobPage'))
+  //Admin Page
+  const AdminDashBoard = lazy(() => import('./pages/AdminPage/AdminDashboardPage'))
 
   return (
     <>
       <Router>
         <Suspense fallback={<>Loading...</>}>
           <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route path="/" element={<User/>}/> */}
+            {/* Auth Page */}
+            <Route path="/register" element={<Register />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/otp" element={<VerifyOTP />} />
+            {/* User Page */}
+            <Route path="/" element={<Introduction />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/post" element={<PostJob />} />
+            {/* Admin Page */}
+            <Route path="/admin" element={<AdminDashBoard />} />
           </Routes>
         </Suspense>
       </Router>

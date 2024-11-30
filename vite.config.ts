@@ -9,10 +9,13 @@ const manifestForPlugin = {
     'apple-touch-icon.png',  // Include apple touch icon
     'masked-icon.svg',       // Include masked icon
   ],
+  devOptions: {
+    enabled: true, // Enable service worker in development
+  },
   manifest: {
-    name: 'Castar Web/App PWA Template',
-    short_name: 'Castar web/app template',
-    description: 'Castar Portfolio App',
+    name: 'Career Search Agency',
+    short_name: 'CSA',
+    description: 'Career Search Agency',
     icons: [
       {
         src: './src/assets/img/dong.png',
