@@ -1,3 +1,0 @@
-pages/: This folder contains components that represent entire pages or views.
-
-Each page component typically corresponds to a route in your application.

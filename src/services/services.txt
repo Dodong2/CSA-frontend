@@ -1,1 +1,0 @@
-services/: This folder contains code for interacting with external APIs, such as API calls, authentication, and other business logic.

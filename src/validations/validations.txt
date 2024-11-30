@@ -1,1 +1,0 @@
-validations folder in a React project is typically used to store all the validation logic for your application.

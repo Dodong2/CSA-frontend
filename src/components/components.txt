@@ -1,4 +1,0 @@
-components/: This folder contains all your React components.
-
-common/: Reusable components that can be used across different parts of the application (e.g., buttons, inputs, modals).
-specific/: Components that are specific to certain features or pages.
