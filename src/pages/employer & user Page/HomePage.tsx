@@ -6,9 +6,9 @@ const HomePage = () => {
   return (
     <>
       <MainContainer>
-        <JobLists/>
         <Link to='/post'><button>Post Job</button></Link>
         <Link><button>See your posts</button></Link>
+        <JobLists/>
       </MainContainer>
     </>
   )

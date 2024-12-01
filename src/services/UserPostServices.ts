@@ -115,14 +115,11 @@ export const getApprovedEmployerJobPosts = async (): Promise<JobPost[]> => {
         credentials: 'include', // Important for session-based authentication
       });
   
-      // Check if the response is ok
       if (!response.ok) {
-        // Attempt to get error details from response
         const errorText = await response.text();
         throw new Error(`HTTP error! status: ${response.status}, message: ${errorText}`);
       }
   
-      // Try to parse the response as JSON
       const responseData = await response.json();
   
       // Check if the response has the expected structure
@@ -143,4 +140,23 @@ export const getApprovedEmployerJobPosts = async (): Promise<JobPost[]> => {
       // Rethrow or return an empty array based on your error handling strategy
       throw error;
     }
-  };
+};
+
+/* pang get ng mga jobs list */
+export const getJobs = async () => {
+    try {
+        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=joblist')
+        
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const result = await response.json()
+        console.log("Fetched data:", result);
+        return result
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return { success: false, jobDetails: [] }; // Provide a fallback response
+    }
+}
