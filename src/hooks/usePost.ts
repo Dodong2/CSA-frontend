@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { JobPostRequest, JobPost } from '../utils/Types';
+import { useState, useCallback, useEffect } from 'react';
+import { JobPostRequest, JobPost, JobPostUpdate } from '../utils/Types';
 import { 
   createJobPost, 
   getEmployerJobPosts, 
@@ -13,7 +13,6 @@ export const useEmployerJobPosts = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [approvedJobPosts, setApprovedJobPosts] = useState<JobPost[]>([]);
-  const [showApprovedPosts, setShowApprovedPosts] = useState(false)
 
   // Initial state for form
   const [formData, setFormData] = useState<JobPostRequest>({
@@ -87,23 +86,76 @@ export const useEmployerJobPosts = () => {
     },
     [formData, fetchJobPosts]
 );
+// useEffect(() => {
+//   const fetchData = async () => {
+//       try {
+//           console.log('Fetching job posts...');
+//           await fetchJobPosts();
+//           console.log('jobPosts after fetch:', jobPosts);
+//       } catch (error) {
+//           console.error('Error fetching job posts:', error);
+//       }
+//   };
+//   fetchData();
+// }, []);
+//   // Update a job post
+//   const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
+//     setLoading(true);
+//     setError(null);
 
-  // Update a job post
-  const handleUpdateJobPost = useCallback(async (updatedPost: JobPost) => {
-    setLoading(true);
-    setError(null);
+//     try {
+//       const result = await updateJobPost(updatedPost);
+//       await fetchJobPosts(); // Refresh pending posts
+//       await fetchApprovedJobPosts(); // Refresh approved posts
+//       return result;
+//     } catch (err) {
+//       setError((err as Error).message);
+//       return null;
+//     } finally {
+//       setLoading(false);
+//     }
+//   }, [fetchJobPosts]);
 
-    try {
-      const result = await updateJobPost(updatedPost);
-      await fetchJobPosts();
-      return result;
-    } catch (err) {
-      setError((err as Error).message);
-      return null;
-    } finally {
-      setLoading(false);
+
+  //update hooks
+  const fetchDetailToUpdate = async (id: string, setUpdateData: (data: JobPost) => void) => {
+  if (!id || id === "id") {
+    console.error("Invalid ID passed:", id);
+    return;
+  }
+  setLoading(true);
+  try {
+    const data = await getApprovedEmployerJobPosts();
+    if (Array.isArray(data)) {
+      const detailsToEdit = data.find((detail: JobPost) => String(detail.id) === String(id));
+
+      setUpdateData(detailsToEdit || {
+        id: '',
+        business_name: '',
+        descriptions: '',
+        work_schedule: '',
+        skills_required: '',
+        experience: '',
+        employment_type: '',
+        work_positions: '',
+        company_email: '',
+        contact_number: '',
+        locations: '',
+        collar: '',
+        user_id: 0, // Default value
+    status: 'pending', // Default value
+    created_at: '', // Default value
+    updated_at: '', //
+      });
+    } else {
+      console.error("Data is not an array:", data);
     }
-  }, [fetchJobPosts]);
+  } catch (error) {
+    console.error("Failed to fetch detail for update:", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
   // Delete a job post
   const handleDeleteJobPost = useCallback(async (id: number) => {
@@ -146,16 +198,6 @@ export const useEmployerJobPosts = () => {
   }, []);
 
 
-  // Toggle showing approved posts
-  const toggleApprovedPosts = useCallback(() => {
-    setShowApprovedPosts(prev => {
-      if (!prev) {
-        fetchApprovedJobPosts();
-      }
-      return !prev;
-    });
-  }, [fetchApprovedJobPosts]);
-
 
 
   return {
@@ -165,11 +207,11 @@ export const useEmployerJobPosts = () => {
     formData,
     handleCreateJobPost,
     fetchJobPosts,
-    handleUpdateJobPost,
+    // handleUpdateJobPost,
     handleDeleteJobPost,
     updateFormData,
     approvedJobPosts,
-    showApprovedPosts,
-    toggleApprovedPosts
+    fetchApprovedJobPosts,
+    fetchDetailToUpdate
   };
 };

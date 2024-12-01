@@ -11,10 +11,16 @@ export interface JobPostRequest {
     contact_number: string
     locations: string
     collar: string
+    id: string;
+    user_id: number;
+    status: 'pending' | 'approved' | 'rejected';
+    created_at: string;
+    updated_at: string;
+    post_id: string; 
   }
   
 export interface JobPost extends JobPostRequest {
-    id: number;
+    id: string;
     user_id: number;
     status: 'pending' | 'approved' | 'rejected';
     created_at: string;
@@ -36,3 +42,10 @@ export interface JobPost extends JobPostRequest {
     collar: string
     status: string
   }
+
+  export type JobPostUpdate = Partial<JobPost> & { id: number };
+
+  //Update Data Props sa UpdateDetails.tsx
+export interface UpdateDetailsProps {
+  id: string
+}

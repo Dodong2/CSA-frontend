@@ -7,7 +7,7 @@ const HomePage = () => {
     <>
       <MainContainer>
         <Link to='/post'><button>Post Job</button></Link>
-        <Link><button>See your posts</button></Link>
+        <Link to='/view'><button>See your posts</button></Link>
         <JobLists/>
       </MainContainer>
     </>

@@ -24,6 +24,8 @@ function App() {
   const Introduction = lazy(() => import('./pages/employer & user Page/introductionPage'));
   const Home = lazy(() => import('./pages/employer & user Page/HomePage'));
   const PostJob = lazy(() => import('./pages/employer & user Page/PostJobPage'))
+  const ViewPost = lazy(() => import('./pages/employer & user Page/ViewPostPage'))
+  const Update = lazy(() => import('./pages/employer & user Page/UpdatePostPage'))
   //Admin Page
   const AdminDashBoard = lazy(() => import('./pages/AdminPage/AdminDashboardPage'))
 
@@ -40,6 +42,8 @@ function App() {
             <Route path="/" element={<Introduction />} />
             <Route path="/home" element={<Home />} />
             <Route path="/post" element={<PostJob />} />
+            <Route path="/view" element={<ViewPost />} />
+            <Route path="/update/:id" element={<Update />} />
             {/* Admin Page */}
             <Route path="/admin" element={<AdminDashBoard />} />
           </Routes>
