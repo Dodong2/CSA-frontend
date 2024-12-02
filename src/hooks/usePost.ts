@@ -9,10 +9,12 @@ import {
 } from '../services/UserPostServices';
 
 export const useEmployerJobPosts = () => {
-  const [jobPosts, setJobPosts] = useState<JobPost[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [approvedJobPosts, setApprovedJobPosts] = useState<JobPost[]>([]);
+  const [jobPosts, setJobPosts] = useState<JobPost[]>([])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [approvedJobPosts, setApprovedJobPosts] = useState<JobPost[]>([])
+  //local approved post para sa delete function
+  // const [localApprovedPosts, setLocalApprovedPosts] = useState([])
 
   // Initial state for form
   const [formData, setFormData] = useState<JobPostRequest>({
@@ -27,35 +29,36 @@ export const useEmployerJobPosts = () => {
     contact_number: '',
     locations: '',
     collar: '',
-  });
+  })
 
-  // Fetch employer's job posts
+  // para makita yung employer job post
   const fetchJobPosts = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const posts = await getEmployerJobPosts();
-      setJobPosts(posts);
+      const posts = await getEmployerJobPosts()
+      setJobPosts(posts || []) //naka array para hindi mag empty array
     } catch (err) {
       setError((err as Error).message);
+      setJobPosts([]) //naka array para hindi mag empty array
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, []);
+  }, [])
 
   // Create a new job post
   const handleCreateJobPost = useCallback(
     async (e?: React.FormEvent) => {
-        if (e) e.preventDefault();
-        setLoading(true);
-        setError(null);
+        if (e) e.preventDefault()
+        setLoading(true)
+        setError(null)
 
         try {
-            const result = await createJobPost(formData);
+            const result = await createJobPost(formData)
             
             if (result.success) {
-                await fetchJobPosts();
+                await fetchJobPosts()
                 // Reset form or show success message
                 setFormData({
                   business_name: '',
@@ -72,35 +75,33 @@ export const useEmployerJobPosts = () => {
                 });
             } else {
                 // Handle unsuccessful response
-                setError(result.message || 'Failed to create job post');
+                setError(result.message || 'Failed to create job post')
             }
 
-            return result;
+            return result
         } catch (err: unknown) {
-            const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred';
-            setError(errorMessage);
-            return null;
+            const errorMessage = err instanceof Error ? err.message : 'An unknown error occurred'
+            setError(errorMessage)
+            return null
         } finally {
-            setLoading(false);
+            setLoading(false)
         }
     },
     [formData, fetchJobPosts]
-);
+)
 
 //pang viewpost
 useEffect(() => {
-  const fetchData = async () => {
+    const fetchData = async () => {
       try {
-          // console.log('Fetching job posts...');
-          await fetchJobPosts();
-          await fetchApprovedJobPosts();
-          // console.log('jobPosts after fetch:', jobPosts);
+        await fetchJobPosts()
+        await fetchApprovedJobPosts()
       } catch (error) {
-          console.error('Error fetching job posts:', error);
+        console.error('Error fetching job posts:', error)
       }
-  };
-  fetchData();
-}, []);
+    }
+    fetchData()
+  }, [])
 
   // Update a job post
   const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
@@ -118,7 +119,7 @@ useEffect(() => {
     } finally {
       setLoading(false);
     }
-  }, [fetchJobPosts]);
+  }, [fetchJobPosts])
 
 
   //update hooks
@@ -162,21 +163,33 @@ useEffect(() => {
 };
 
   // Delete a job post
-  const handleDeleteJobPost = useCallback(async (id: number) => {
-    setLoading(true);
-    setError(null);
-
+  const handleDeleteJobPost = useCallback(async (id: string) => {
+    setLoading(true)
+    setError(null)
+  
     try {
-      const result = await deleteJobPost(id);
-      await fetchJobPosts();
-      return result;
+      const result = await deleteJobPost(id)
+      console.log('Job post deleted:', result)
+  
+      // Update jobPosts state locally to remove the deleted post
+      setJobPosts((prevJobPosts) => prevJobPosts.filter((post) => post.id !== id))
+      setApprovedJobPosts((prevApprovedJobPosts) => prevApprovedJobPosts.filter((post) => post.id !== id))
+  
+      // Optionally, fetch latest data from server for consistency
+      await fetchJobPosts()
+      await fetchApprovedJobPosts()
+  
+      return result
     } catch (err) {
-      setError((err as Error).message);
-      return null;
+      const errorMessage = (err as Error).message;
+      setError(errorMessage)
+      alert(`Failed to delete job post: ${errorMessage}`)
+      return null
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  }, [fetchJobPosts]);
+  }, [fetchJobPosts, setJobPosts, setApprovedJobPosts])
+  
 
   // Update form data
   const updateFormData = useCallback((key: keyof JobPostRequest, value: string) => {
@@ -188,16 +201,17 @@ useEffect(() => {
 
   // Fetch approved job posts
   const fetchApprovedJobPosts = useCallback(async () => {
-    setLoading(true);
-    setError(null);
+    setLoading(true)
+    setError(null)
 
     try {
-      const posts = await getApprovedEmployerJobPosts();
-      setApprovedJobPosts(posts);
+      const posts = await getApprovedEmployerJobPosts()
+      setApprovedJobPosts(posts || []) //naka array para hindi mag empty array
     } catch (err) {
-      setError((err as Error).message);
+      setError((err as Error).message)
+      setApprovedJobPosts([]) //naka array para hindi mag empty array
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
   }, []);
 
@@ -205,7 +219,7 @@ useEffect(() => {
 
 
   return {
-    jobPosts,
+    jobPosts: jobPosts || [], //naka array para hindi mag empty array
     loading,
     error,
     formData,
@@ -214,8 +228,8 @@ useEffect(() => {
     handleUpdateJobPost,
     handleDeleteJobPost,
     updateFormData,
-    approvedJobPosts,
+    approvedJobPosts: approvedJobPosts || [], //naka array para hindi mag empty array
     fetchApprovedJobPosts,
-    fetchDetailToUpdate
+    fetchDetailToUpdate,
   };
 };

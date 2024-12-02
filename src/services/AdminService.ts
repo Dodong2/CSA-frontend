@@ -43,7 +43,7 @@ export const getApprovedJobPosts = async () => {
 }
 
 // Add methods to approve or reject job posts
-export const approveJobPost = async (id: number) => {
+export const approveJobPost = async (id: string) => {
     try {
         const formData = new FormData()
         formData.append('id', id.toString())
@@ -66,7 +66,7 @@ export const approveJobPost = async (id: number) => {
     }
 }
 
-export const rejectJobPost = async (id: number, reason: string = 'Not specified') => {
+export const rejectJobPost = async (id: string, reason: string = 'Not specified') => {
     try {
         const formData = new FormData()
         formData.append('id', id.toString())

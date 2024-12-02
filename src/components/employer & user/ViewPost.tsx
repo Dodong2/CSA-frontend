@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useEmployerJobPosts } from "../../hooks/usePost"
 
-const ViewPost: React.FC = () => {
+const ViewPost = () => {
   const {
-    jobPosts,
-    approvedJobPosts,
+    jobPosts = [], //naka array para hindi mag empty array
+    approvedJobPosts=[], //naka array para hindi mag empty array
     loading,
     fetchJobPosts,
-    fetchApprovedJobPosts
+    fetchApprovedJobPosts,
+    handleDeleteJobPost
   } = useEmployerJobPosts();
 
   useEffect(() => {
@@ -20,6 +21,8 @@ const ViewPost: React.FC = () => {
   if (loading) {
     return <p>Loading job posts...</p>;
   }
+
+  
 
   return (
     <>
@@ -98,7 +101,7 @@ const ViewPost: React.FC = () => {
                 <td>{post.status}</td>
                 <td>
                 <Link to={`/update/${post.id}`}><button>edit</button></Link>
-                  <button>Delete</button>
+                <button onClick={() => handleDeleteJobPost(post.id)}>Delete</button>
                 </td>
               </tr>
             ))}

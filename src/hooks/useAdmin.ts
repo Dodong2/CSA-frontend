@@ -51,7 +51,7 @@ export const useEmployerJobPost = () => {
     }, []);
 
     // Approve a job post
-    const handleApproveJobPost = useCallback(async (id: number) => {
+    const handleApproveJobPost = useCallback(async (id: string) => {
         setLoading(true);
         setError(null);
         
@@ -69,7 +69,7 @@ export const useEmployerJobPost = () => {
     }, [fetchPendingJobPosts, fetchApprovedJobPosts]);
 
     // Reject a job post
-    const handleRejectJobPost = useCallback(async (id: number, reason?: string) => {
+    const handleRejectJobPost = useCallback(async (id: string, reason?: string) => {
         setLoading(true);
         setError(null);
         

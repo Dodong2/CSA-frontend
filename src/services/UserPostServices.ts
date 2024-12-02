@@ -125,7 +125,7 @@ export const updateDetails = async (data: JobPost) => {
 
 
 // para sa employer delete job post
-export const deleteJobPost = async (id: number) => {
+export const deleteJobPost = async (id: string) => {
     try {
         const formData = new FormData()
         formData.append('id', id.toString())
@@ -135,11 +135,13 @@ export const deleteJobPost = async (id: number) => {
             body: formData
         })
 
-        if (!response.ok) {
+        const result = await response.json()
+        console.log('Delete response:', result);
+        if (!response.ok || !result.success) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
     
-        const result = await response.json()
+        
         return result
 
     } catch (error) {
