@@ -86,35 +86,39 @@ export const useEmployerJobPosts = () => {
     },
     [formData, fetchJobPosts]
 );
-// useEffect(() => {
-//   const fetchData = async () => {
-//       try {
-//           console.log('Fetching job posts...');
-//           await fetchJobPosts();
-//           console.log('jobPosts after fetch:', jobPosts);
-//       } catch (error) {
-//           console.error('Error fetching job posts:', error);
-//       }
-//   };
-//   fetchData();
-// }, []);
-//   // Update a job post
-//   const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
-//     setLoading(true);
-//     setError(null);
 
-//     try {
-//       const result = await updateJobPost(updatedPost);
-//       await fetchJobPosts(); // Refresh pending posts
-//       await fetchApprovedJobPosts(); // Refresh approved posts
-//       return result;
-//     } catch (err) {
-//       setError((err as Error).message);
-//       return null;
-//     } finally {
-//       setLoading(false);
-//     }
-//   }, [fetchJobPosts]);
+//pang viewpost
+useEffect(() => {
+  const fetchData = async () => {
+      try {
+          // console.log('Fetching job posts...');
+          await fetchJobPosts();
+          await fetchApprovedJobPosts();
+          // console.log('jobPosts after fetch:', jobPosts);
+      } catch (error) {
+          console.error('Error fetching job posts:', error);
+      }
+  };
+  fetchData();
+}, []);
+
+  // Update a job post
+  const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const result = await updateJobPost(updatedPost);
+      await fetchJobPosts(); // Refresh pending posts
+      await fetchApprovedJobPosts(); // Refresh approved posts
+      return result;
+    } catch (err) {
+      setError((err as Error).message);
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }, [fetchJobPosts]);
 
 
   //update hooks
@@ -207,7 +211,7 @@ export const useEmployerJobPosts = () => {
     formData,
     handleCreateJobPost,
     fetchJobPosts,
-    // handleUpdateJobPost,
+    handleUpdateJobPost,
     handleDeleteJobPost,
     updateFormData,
     approvedJobPosts,

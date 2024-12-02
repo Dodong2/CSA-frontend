@@ -10,6 +10,7 @@ import SearchBar from "../common/SearchBar"
 const JobLists = () => {
   const {loading, joblists} = useJobLists()
   const [searchQuery, setSearchQuery] = useState<string>("")
+  
 
   //filtered details para sa search functions
   const filteredDetails = joblists.filter((detail) =>

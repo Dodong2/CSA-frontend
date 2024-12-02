@@ -1,4 +1,5 @@
 import { JobPostRequest, JobPost } from "../utils/Types"
+import { JobPostUpdate } from "../utils/Types"
 //para sa employer Job post request
 export const createJobPost = async (data: JobPostRequest) => {
     try {
@@ -35,7 +36,7 @@ export const createJobPost = async (data: JobPostRequest) => {
 // para sa get employer job post
 export const getEmployerJobPosts = async () => {
     try {
-        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=get_employer_post',{
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=get_employer_post',{
             method: 'GET',
             credentials: 'include'
         })
@@ -53,37 +54,37 @@ export const getEmployerJobPosts = async () => {
     }
 }
 
-// //para sa employer update job post
-// export const updateJobPost = async (data: JobPostUpdate) => {
-//     try {
-//         const formData = new FormData()
-//         formData.append('id', data.id.toString())
+//para sa employer update job post
+export const updateJobPost = async (data: JobPostUpdate) => {
+    try {
+        const formData = new FormData()
+        formData.append('id', data.id.toString())
         
-//         // Append all fields except id
-//         Object.entries(data).forEach(([key, value]) => {
-//             if (key !== 'id' && value !== undefined) {
-//                 formData.append(key, value.toString())
-//             }
-//         })
+        // Append all fields except id
+        Object.entries(data).forEach(([key, value]) => {
+            if (key !== 'id' && value !== undefined) {
+                formData.append(key, value.toString())
+            }
+        })
 
-//         const response = await fetch('http://localhost/Career Search Agency/admin.php?action=update_job_post', {
-//             method: 'POST',
-//             credentials: 'include',
-//             body: formData
-//         })
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=update_job_post', {
+            method: 'POST',
+            credentials: 'include',
+            body: formData
+        })
 
-//         if (!response.ok) {
-//             throw new Error(`HTTP error! status: ${response.status}`);
-//         }
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
 
-//         const result = await response.json()
-//         return result
+        const result = await response.json()
+        return result
 
-//     } catch (error) {
-//         console.log(error)
-//         throw error
-//     }
-// }
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
 
 
 export const updateDetails = async (data: JobPost) => {
@@ -102,7 +103,7 @@ export const updateDetails = async (data: JobPost) => {
         formData.append('locations', data.locations)
         formData.append('collar', data.collar)
 
-        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=update_job_post', {
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=update_job_post', {
             method: 'GET',
             body: formData,
             credentials: 'include'
@@ -128,7 +129,7 @@ export const deleteJobPost = async (id: number) => {
     try {
         const formData = new FormData()
         formData.append('id', id.toString())
-        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=delete_job_post', {
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=delete_job_post', {
             method: 'POST',
             credentials: 'include',
             body: formData
@@ -150,7 +151,7 @@ export const deleteJobPost = async (id: number) => {
 // In UserPostServices.ts
 export const getApprovedEmployerJobPosts = async (): Promise<JobPost[]> => {
     try {
-      const response = await fetch('http://localhost/Career Search Agency/admin.php?action=get_approved_employer_posts', {
+      const response = await fetch('http://localhost/Career Search Agency/employer.php?action=get_approved_employer_posts', {
         method: 'GET',
         credentials: 'include', // Important for session-based authentication
       });
@@ -185,7 +186,7 @@ export const getApprovedEmployerJobPosts = async (): Promise<JobPost[]> => {
 /* pang get ng mga jobs list */
 export const getJobs = async () => {
     try {
-        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=joblist')
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=joblist')
         
         if(!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`)
