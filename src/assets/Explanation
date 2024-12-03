@@ -1,5 +1,0 @@
-assets/: This folder contains static assets like images, stylesheets (CSS/SCSS), and fonts.
-
-images/: All your image files.
-styles/: Global styles and CSS files.
-fonts/: Custom fonts used in your project.

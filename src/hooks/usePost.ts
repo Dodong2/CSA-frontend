@@ -13,8 +13,6 @@ export const useEmployerJobPosts = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [approvedJobPosts, setApprovedJobPosts] = useState<JobPost[]>([])
-  //local approved post para sa delete function
-  // const [localApprovedPosts, setLocalApprovedPosts] = useState([])
 
   // Initial state for form
   const [formData, setFormData] = useState<JobPostRequest>({

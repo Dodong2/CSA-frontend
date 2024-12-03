@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { JobPost } from "../../utils/Types";
 import { updateDetails } from "../../services/UserPostServices";
 
@@ -18,7 +18,7 @@ export const handleSendResume = (email: string) => {
      window.open(mailtoLink, '_blank')
    }
    
-   //pang open ng map para sa location for JobPosts.tsx
+//pang open ng map para sa location for JobPosts.tsx
     export const handleOpenMap = (location: string) => {
        if(!location) {
          alert("Location information is not available.")
@@ -28,7 +28,33 @@ export const handleSendResume = (email: string) => {
        window.open(url, '_blank')
      }
 
+//pang Sidebar 
+export const useSidebar = () => {
+    const [isOpen, setIsOpen] = useState(false);
 
+    const toggleSidebar = () => {
+        setIsOpen(!isOpen);
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.classList.add('no-scroll');
+        } else {
+            document.body.classList.remove('no-scroll');
+        }
+        return () => {
+            document.body.classList.remove('no-scroll'); // Clean up on unmount
+        };
+    }, [isOpen]);
+
+    return { isOpen, toggleSidebar };
+};
+
+
+
+
+
+// pang update
      export const useHandleUpdate = () => {
       const [updateData, setUpdateData] = useState<Partial<JobPost>>({
         id: '',

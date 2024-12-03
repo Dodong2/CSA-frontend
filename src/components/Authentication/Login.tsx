@@ -16,12 +16,14 @@ const Login = () => {
 
   return (
     <>
+    <div className="login">
       <form onSubmit={handleSubmit}>
-        <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+        <input type="email" placeholder="Username or Email" value={email} onChange={(e) => setEmail(e.target.value)}/>
         <input type="text" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-        <button type="submit" disabled={loading}> {loading ? 'Registering...' : 'Register'}</button>
+        <button type="submit" disabled={loading}> {loading ? 'Registering...' : 'login'}</button>
         {error && <p style={{ color: 'red' }}>{error}</p>}
       </form>
+      </div>
     </>
   )
 }

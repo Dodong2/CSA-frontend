@@ -22,6 +22,7 @@ function App() {
   const VerifyOTP = lazy(() => import('./pages/AuthPage/VerifyOTPPages'))
   // User Page
   const Introduction = lazy(() => import('./pages/employer & user Page/introductionPage'));
+  const RegLog = lazy(() => import('./pages/employer & user Page/RegLogPages'));
   const Home = lazy(() => import('./pages/employer & user Page/HomePage'));
   const PostJob = lazy(() => import('./pages/employer & user Page/PostJobPage'))
   const ViewPost = lazy(() => import('./pages/employer & user Page/ViewPostPage'))
@@ -40,6 +41,7 @@ function App() {
             <Route path="/otp" element={<VerifyOTP />} />
             {/* User Page */}
             <Route path="/" element={<Introduction />} />
+            <Route path="/reglog" element={<RegLog />} />
             <Route path="/home" element={<Home />} />
             <Route path="/post" element={<PostJob />} />
             <Route path="/view" element={<ViewPost />} />

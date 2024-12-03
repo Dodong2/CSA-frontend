@@ -1,84 +1,510 @@
 /*--------------------(  Dito lahat lalagay mga design CSS ng divs )--------------------*/
 .main-container {
   padding: 20px;
+  border: 1px solid red;
 }
 
-/********** Sample Header CSS **********/
-.sample-header {
-  position: relative;
-  background-color: var(--primary-color-dark);
-  border-radius: 15px;
-  margin: auto;
-  padding: 27px;
-  overflow: hidden;
-  margin-top: 28px;
-}
-.sample-header h1 {
-    font-family: 'lora';
-    font-size: 1.2em;
-    font-weight: 900;
-    text-align: center;
-    color: var(--primary-text-light);
-}
-.sample-header p {
-    font-family: 'poppins-light';
-    font-weight: 100;
-    text-align: left;
-    font-size: .8em;
-    color: var(--primary-text-light);
-    margin-top:20px ;
-}
-/********** Sample Button CSS **********/
-.sample-btn {
-  display: flex;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  font-family: "poppins-bold";
-  font-size: 1.4em;
-  background-color: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  border: none;
-  border-radius: 10px;
-  padding: 10px;
-  margin: auto;
-  width: 70%;
-  top: 150px;
-}
-.sample-btn:active {
-    transform: scale(0.95);
+/********** All around button animation **********/
+.btn:active {
+  transform: scale(0.95);
 }
 
-.sample-footer {
-    position: relative;
+/********** introductions **********/
+.introductions {
+  margin-top: 50px;
+  display: grid;
+  place-items: center;
+}
+.introductions .title-txt {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 50px;
+}
+.title-txt h1 {
+  font-family: poppins-bold;
+  letter-spacing: 1px;
+  font-size: clamp(1.3rem, 5vw, 2.1rem);
+  white-space: wrap;
+  margin: 0 auto;
+}
+
+.title-txt p {
+  font-family: lora;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: clamp(1rem, 5vw, 1.5rem);
+}
+
+.pictures-svg {
+  margin: auto;
+  border-radius: 5px;
+  /* height: 250px;
+  width: 250px; */
+  overflow: hidden;
+}
+
+.pictures-svg img {
+    width: 100%;
+    height: 100%;
     margin: auto;
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
-    top: 350px;
-}
-.sample-footer h1 {
-    font-family: 'poppins-light';
-    font-size: .8em;
-    color: var(--primary-color);
+    object-fit: cover;
 }
 
-/********** Sample Error Vibration validationn error CSS **********/
-.vibrate-not-work {
-    position: absolute;
-    text-align: center;
-    color: var(--primary-color-red);
-    font-size: .8em;
-    font-family: 'poppins-bold';
-    top: 65%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.btn {
+  margin-top: 60px;
+  display: grid;
+  place-items: center;
+  justify-items: center;
+  align-self: center;
+  gap: 10px;
 }
+.btn button {
+  font-family: poppins-light;
+  background-color: var(--primary-color-dark);
+  padding: 10px;
+  width: 150px;
+  border: 80px;
+  border-radius: 80px;
+  letter-spacing: 1px;
+  font-size: clamp(1.1em, 2vw + 1em, 1em);
+  font-weight: 600;
+  color: var(--primary-text-light);
+}
+
+
+
+/********** reglog **********/
+.reg-log {
+  margin-top: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.reg-log .title-txt {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+}
+.reg-log .title-txt h1 {
+  font-family: poppins-bold;
+  letter-spacing: 1px;
+  font-size: clamp(1.3rem, 5vw, 1.5rem);
+  margin: 0 auto;
+}
+
+.reg-log .title-txt p {
+  font-family: lora;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: 1.5em;
+}
+
+.reg-log .pictures-svg {
+  margin: auto;
+  border-radius: 5px;
+  height: 250px;
+  width: 250px;
+  overflow: hidden;
+}
+
+.reg-log .pictures-svg img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: cover;
+}
+
+.reg-log .btn {
+  margin-top: 20px;
+  display: grid;
+  place-items: center;
+  justify-items: center;
+  align-self: center;
+  gap: 10px;
+}
+.reg-log .button1, .reg-log .button2 {
+  font-family: poppins-light;
+  background-color: var(--primary-color-dark);
+  padding: 10px;
+  width: 150px;
+  border: 80px;
+  border-radius: 80px;
+  letter-spacing: 1px;
+  font-size: clamp(1.1em, 2vw + 1em, 1em);
+  font-weight: 600;
+  color: var(--primary-text-light);
+}
+
+.button1:active, .button2:active {
+  transform: scale(0.95);
+}
+
+/********** login **********/
+.login {
+  display: grid;
+  place-items: center;
+}
+.login .title-txt {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 50px;
+}
+.login .title-txt h1 {
+  font-family: poppins-bold;
+  letter-spacing: 1px;
+  color: var(--primary-color-dark);
+  font-size: clamp(1.3rem, 5vw, 2.1rem);
+  white-space: wrap;
+  margin: 0 auto;
+}
+
+.login .title-txt p {
+  font-family: lora;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: clamp(1rem, 5vw, 1.5rem);
+}
+
+.login .pictures-svg {
+  margin: auto;
+  border-radius: 5px;
+  height: 230px;
+  width: 230px;
+  overflow: hidden;
+}
+
+.login .pictures-svg img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: cover;
+}
+
+.login form {
+  margin-top: -40px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+.login form input {
+  font-family: poppins-light;
+  font-weight: 600;
+  width: 250px;
+  padding: 10px;
+  border: 1px solid var(--secondary-text-color) ;
+  border-radius: 10px;
+  color: var(--secondary-text-color);
+  font-size: clamp(1rem, 5vw, .1rem);
+  outline: none;
+}
+.link-sign-up-login {
+  margin-top: 10px;
+}
+
+.link-sign-up-login p {
+  font-family: lora;
+  color: var(--secondary-text-color);
+}
+.link-sign-up-login a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.login button {
+  font-family: poppins-light;
+  background-color: var(--primary-color-dark);
+  padding: 10px;
+  width: 150px;
+  border: 80px;
+  border-radius: 80px;
+  letter-spacing: 1px;
+  font-size: clamp(1.1em, 2vw + 1em, 1em);
+  font-weight: 600;
+  color: var(--primary-text-light);
+}
+
+.login button:active {
+  transform: scale(0.95);
+}
+
+/********** register **********/
+.register {
+  display: grid;
+  place-items: center;
+}
+.register .title-txt {
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: 50px;
+}
+.register .title-txt h1 {
+  font-family: poppins-bold;
+  letter-spacing: 1px;
+  color: var(--primary-color-dark);
+  font-size: clamp(1.3rem, 5vw, 2.1rem);
+  white-space: wrap;
+  margin: 0 auto;
+}
+
+.register .title-txt p {
+  font-family: lora;
+  font-weight: 300;
+  letter-spacing: 1px;
+  font-size: clamp(1rem, 5vw, 1.5rem);
+}
+
+.register .pictures-svg {
+  margin: auto;
+  border-radius: 5px;
+  height: 190px;
+  width: 190px;
+  overflow: hidden;
+}
+
+.register .pictures-svg img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: cover;
+}
+
+.register form {
+  margin-top: -40px;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+}
+.register form input {
+  font-family: poppins-light;
+  font-weight: 600;
+  width: 250px;
+  padding: 10px;
+  border: 1px solid var(--secondary-text-color) ;
+  border-radius: 10px;
+  color: var(--secondary-text-color);
+  font-size: clamp(1rem, 5vw, .1rem);
+  outline: none;
+}
+.link-sign-up-login {
+  margin-top: 10px;
+}
+
+.link-sign-up-login p {
+  font-family: lora;
+  color: var(--secondary-text-color);
+}
+.link-sign-up-login a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.register button {
+  font-family: poppins-light;
+  background-color: var(--primary-color-dark);
+  padding: 10px;
+  width: 150px;
+  border: 80px;
+  border-radius: 80px;
+  letter-spacing: 1px;
+  font-size: clamp(1.1em, 2vw + 1em, 1em);
+  font-weight: 600;
+  color: var(--primary-text-light);
+}
+
+.register button:active {
+  transform: scale(0.95);
+}
+
+/********** nav **********/
+nav {
+  position:absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: .5rem ;
+  background-color: var(--primary-color);
+  z-index: -1;
+}
+
+/********** home **********/
+.job-list {
+  width: 500px;
+  margin: auto;
+}
+
+.search-bar {
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  border: 1px solid red;
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 100%; /* Ensure it takes full width of its container */
+  max-width: 300px; 
+  resize: both;
+}
+
+.search-bar input {
+  font-family: poppins-light;
+  font-size: clamp(1rem, 5vw, .1rem);
+  font-weight: 600;
+  outline: none;
+  padding: 5px 15px;
+  z-index: 1;
+  width: 300px;
+  border-radius: 20px;
+  border: 1px solid var(--secondary-text-color);
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  width: 100%; /* Responsive width based on container */
+  max-width: 100%; /* Avoid exceeding container width */
+}
+.no-results {
+  border: 1px solid red;
+}
+
+
+
+.navbar-menu {
+  position: relative;
+  background-color: var(--primary-text-light);
+  justify-self: end;
+  align-self: center;
+  margin-right: 20px;
+  border-radius: 50%;
+  padding: 7px;
+}
+.navbar-menu button {
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  z-index: 100;
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: clamp(1.2em, 2vw + 1em, 1em);
+  font-weight: 900;
+}
+
+/********** Sidebar Menu **********/
+.sidebar {
+  position: fixed;
+  right: -300px;
+  top: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  color: #fff;
+  transition: right 0.7s ease;
+  z-index: 2;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.menu-btn {
+  margin: 20px;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+/* Overlay styling */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.no-scroll {
+  overflow: hidden; /* Prevent scrolling */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*pang details*/
 .details {
-  margin: 20px 20px 0 0;
   --padding: 10px;
   border: 1px solid #8d8d8d;
   border-radius: 4px;

@@ -22,8 +22,8 @@ const JobLists = () => {
 
   return (
     <>
+     <div className="details">
      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-     <div>
     {/* Validations kung mabagal yung request or internet */}
     {loading && <p>Loading...</p>}
     {/* validations para kung walanng jobs */}
@@ -34,8 +34,8 @@ const JobLists = () => {
       <p>No matching job posts exist.</p>
     </div>
     )}
-
-    <div className="details">
+    
+    <div className="job-lists-details">
       {filteredDetails.map((detail) => (
         <React.Fragment key={detail.id}>
             {/*details titles*/}
@@ -69,7 +69,7 @@ const JobLists = () => {
           </div><br/>
         </React.Fragment>
       ))}
-    </div>
+      </div>
 
 </div>
     </>
