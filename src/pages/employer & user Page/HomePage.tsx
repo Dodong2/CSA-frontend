@@ -13,6 +13,7 @@ const HomePage = () => {
   const { isOpen, toggleSidebar } = useSidebar()
   return (
     <>
+    <div className='home'>
     <nav>
       <div className='header'>
         <div>
@@ -26,6 +27,7 @@ const HomePage = () => {
     </nav>
     <div className="job-list">
       <JobLists/>
+      </div>
     </div>
     </>
   )
