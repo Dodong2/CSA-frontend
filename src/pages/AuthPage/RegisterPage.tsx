@@ -19,7 +19,7 @@ const RegisterPage = () => {
           <p>Start your journey to finding the perfect job</p>
         </div>
         <Register/>
-        <div className="link-sign-up-login"><p>Don’t have an account? <Link to='/register'>Sign Up</Link></p></div>
+        <div className="link-sign-up-login"><p>Don’t have an account? <Link to='/login'>Sign Up</Link></p></div>
         </div>
       </MainContainer>
     </>

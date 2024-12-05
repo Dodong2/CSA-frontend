@@ -24,7 +24,7 @@ const PostJobs = () => {
 
   return (
     <>
-    <div>
+    <div className="job-post-form">
         <form onSubmit={handleCreateJobPost}>
         <input type="text" placeholder="Business name,Company name or Job offer" value={formData.business_name} onChange={(e) => updateFormData('business_name',e.target.value)} required/><br/>
         <textarea rows={5} cols={50} placeholder="a Brief Descriptions" value={formData.descriptions} onChange={(e) => updateFormData('descriptions',e.target.value)} required/><br/>

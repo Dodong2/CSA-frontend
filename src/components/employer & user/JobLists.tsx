@@ -1,18 +1,26 @@
 /********** React Library **********/
 import React from "react"
 import { useState } from "react"
+/********** assets **********/
+import csa from '../../assets/img/csa.svg'
+import noresult from '../../assets/img/no_result.svg'
 /********** icon **********/
 import { TbTie } from "react-icons/tb";
-/********** Hooks **********/
+import { RiArrowDropDownLine } from "react-icons/ri";/********** Hooks **********/
 import { useJobLists } from "../../hooks/useJobList"
 import { handleSendResume, handleOpenMap } from "../../hooks/user button functions/userFunction"
+import { FiMenu } from "react-icons/fi";
+/********** Hooks **********/
+import { useSidebar } from "../../hooks/user button functions/userFunction";
 /********** Component **********/
 import SearchBar from "../common/SearchBar"
+import SideBar from "../../components/common/SideBar"
 
 const JobLists = () => {
   const {loading, joblists} = useJobLists()
   const [searchQuery, setSearchQuery] = useState<string>("")
   const [isFocused, setIsFocused] = useState(false);
+  const { isOpen, toggleSidebar } = useSidebar()
   
 
   //filtered details para sa search functions
@@ -38,10 +46,22 @@ const JobLists = () => {
   return (
     <>
      <div className="details">
-      <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1} className="searchbar-container">
+     <nav>
+      <div className='header'>
+        <div>
+          <img src={csa} alt={csa}/>
+        </div>
+        <div onFocus={handleFocus} onBlur={handleBlur} tabIndex={-1} className="searchbar-container">
               {/* Search Bar */}
         <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
       </div>
+        <div className="navbar-menu">
+            <button onClick={toggleSidebar}>{ isOpen ? <FiMenu/> : <FiMenu/>}</button> 
+            <SideBar isOpen={isOpen} toggleSidebar={toggleSidebar} />
+        </div>
+      </div>
+    </nav>
+      
       {/* Buttons search suggestions */}
       {isFocused && (
         <div
@@ -65,7 +85,10 @@ const JobLists = () => {
     {/* validations kung hindi existing yung search jobs */}
     {!loading && searchQuery && filteredDetails.length === 0 && (
       <div className="no-results">
-      <p>No matching job posts exist.</p>
+        <div className="no-result-img">
+      <img src={noresult} alt="noresult"/>
+      </div>
+      <p>no results</p>
     </div>
     )}
     
@@ -77,6 +100,7 @@ const JobLists = () => {
           <details className="details__container">
             <summary className="details__summary">
               <div className="details__title">
+              <div className="arrow-button"><RiArrowDropDownLine/></div>
                 <div className="titles"><h1>{detail.business_name}</h1></div>  
                 <div className="works"><h2>{detail.work_positions}</h2></div>
                 <div className="collars"><p>Type of Collar: {detail.collar} <TbTie/></p></div>

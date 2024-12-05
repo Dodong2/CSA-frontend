@@ -22,10 +22,11 @@ const VerifyOTP = () => {
 
   return (
     <>
-      <div>
+      <div className="otp">
+        <h1>Please check your Gmail inbox for the OTP and enter it below to proceed.</h1>
         <form onSubmit={handleSubmit}>
             <input type="text" placeholder="Enter 4-digit OTP" value={otp} onChange={(e) => setOTP(e.target.value)}
-            maxLength={4} required/>
+            maxLength={4}/>
             <button type="submit" disabled={loading}>
                 {loading ? 'Verifying...' : 'Verify OTP'}
             </button>

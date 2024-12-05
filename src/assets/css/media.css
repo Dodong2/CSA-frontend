@@ -10,9 +10,20 @@
 }
 
 @media all and (max-width: 550px) {
-    .home {
-        width: 500px;
+    .about {
+        display: flex;
+        align-items:center ;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .about-txt {
+        width: 400px;
+      }
+      .about-img {
         margin: auto;
-    }
-    
+        border-radius: 5px;
+        height: 250px;
+        width: 250px;
+        overflow: hidden;
+      }
 }
