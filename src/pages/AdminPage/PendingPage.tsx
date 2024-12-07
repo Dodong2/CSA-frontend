@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 /********** icons **********/
 import { FaArrowLeftLong } from "react-icons/fa6";
 /********** components **********/
-import PostJobs from "../../components/employer & user/PostJobs"
+import PendingPost from "../../components/Admin/PendingPost"
 
-const PostJobPage = () => {
+const PendingPage = () => {
   return (
     <>
     <div className='back'>
-        <Link to="/home"><button><FaArrowLeftLong/></button></Link>
+        <Link to="/admin"><button><FaArrowLeftLong/></button></Link>
     </div>
-        <PostJobs/>
+      <PendingPost/>
     </>
   )
 }
 
-export default PostJobPage
+export default PendingPage

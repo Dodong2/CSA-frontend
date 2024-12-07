@@ -31,3 +31,7 @@ body {
     font-family: "poppins-bold";
     src: url("../fonts/Poppins-Bold.ttf");
   }
+
+  button:active {
+    transform: scale(0.80);
+  }

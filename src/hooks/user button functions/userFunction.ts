@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { JobPost } from "../../utils/Types";
-import { updateDetails } from "../../services/UserPostServices";
+import { JobPost , UpdateFormData} from "../../utils/Types";
+import { updateDetails } from "../../services/AdminService";
 
 //pang open ng gmail at makapagsend resume JobPosts.tsx
 export const handleSendResume = (email: string) => {
@@ -54,58 +54,37 @@ export const useSidebar = () => {
 
 
 
-// pang update
-     export const useHandleUpdate = () => {
-      const [updateData, setUpdateData] = useState<Partial<JobPost>>({
-        id: '',
-        business_name: '',
-        descriptions: '',
-        work_schedule: '',
-        skills_required: '',
-        experience: '',
-        employment_type: '',
-        work_positions: '',
-        company_email: '',
-        contact_number: '',
-        locations: '',
-        collar: ''
-      })
+export const useHandleUpdate = () => {
+  const [updateData, setUpdateData] = useState<UpdateFormData | null>({
+    user_id: '',
+  id: '',
+  business_name: '',
+  descriptions: '',
+  work_schedule: '',
+  skills_required: '',
+  experience: '',
+  employment_type: '',
+  work_positions: '',
+  company_email: '',
+  contact_number: '',
+  locations: '',
+  collar: '',
+  status: 'pending', // Use a valid value
+  created_at: '',
+  updated_at: ''
+  })
 
-      /* para maaccess yung update na value means mapapaltan pag wala nito hindi ma-access*/
+    /* para maaccess yung update na value means mapapaltan pag wala nito hindi ma-access*/
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
       const { name, value } = e.target;
       // console.log(`Updating ${name} with value: ${value}`)
-      setUpdateData(prevData => ({
-        ...prevData, // Spread the previous state, even if it's `null` or `undefined`, the result will be an empty object
-        [name]: value,
-      }));
+      setUpdateData(prevData => prevData ? { ...prevData, [name]: value } : null);
     };
 
     const handleSubmit = async () => {
       if (updateData) {
         try {
-          // Ensure all required properties are present
-          const completeData: JobPost = {
-            id: updateData.id || "", // Provide default values where necessary
-            user_id: updateData.user_id || 0, // Replace with actual values or defaults
-            status: updateData.status || "pending", // Default or existing value
-            created_at: updateData.created_at || new Date().toISOString(), // Provide sensible defaults
-            updated_at: new Date().toISOString(), // Update timestamp
-            business_name: updateData.business_name || "",
-            descriptions: updateData.descriptions || "",
-            work_schedule: updateData.work_schedule || "",
-            skills_required: updateData.skills_required || "",
-            experience: updateData.experience || "",
-            employment_type: updateData.employment_type || "",
-            work_positions: updateData.work_positions || "",
-            company_email: updateData.company_email || "",
-            contact_number: updateData.contact_number || "",
-            locations: updateData.locations || "",
-            collar: updateData.collar || "",
-          };
-    
-          // Pass the complete object to the update function
-          await updateDetails(completeData);
+          await updateDetails(updateData);
           alert("Details updated successfully");
         } catch (error) {
           console.error("Failed to update details:", error);
@@ -113,10 +92,11 @@ export const useSidebar = () => {
       }
     };
 
+
     return {
       updateData,
       setUpdateData,
       handleChange,
       handleSubmit
     }
-  }
+}

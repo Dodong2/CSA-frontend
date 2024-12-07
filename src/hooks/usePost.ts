@@ -1,10 +1,10 @@
 import { useState, useCallback, useEffect } from 'react';
-import { JobPostRequest, JobPost, JobPostUpdate } from '../utils/Types';
+import { JobPostRequest, JobPost } from '../utils/Types';
 import { 
   createJobPost, 
   getEmployerJobPosts, 
   getApprovedEmployerJobPosts,
-  updateJobPost, 
+  // updateJobPost, 
   deleteJobPost 
 } from '../services/UserPostServices';
 
@@ -13,6 +13,7 @@ export const useEmployerJobPosts = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [approvedJobPosts, setApprovedJobPosts] = useState<JobPost[]>([])
+  
 
   // Initial state for form
   const [formData, setFormData] = useState<JobPostRequest>({
@@ -101,23 +102,23 @@ useEffect(() => {
     fetchData()
   }, [])
 
-  // Update a job post
-  const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
-    setLoading(true);
-    setError(null);
+  // // Update a job post
+  // const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
+  //   setLoading(true);
+  //   setError(null);
 
-    try {
-      const result = await updateJobPost(updatedPost);
-      await fetchJobPosts(); // Refresh pending posts
-      await fetchApprovedJobPosts(); // Refresh approved posts
-      return result;
-    } catch (err) {
-      setError((err as Error).message);
-      return null;
-    } finally {
-      setLoading(false);
-    }
-  }, [fetchJobPosts])
+  //   try {
+  //     const result = await updateJobPost(updatedPost);
+  //     await fetchJobPosts(); // Refresh pending posts
+  //     await fetchApprovedJobPosts(); // Refresh approved posts
+  //     return result;
+  //   } catch (err) {
+  //     setError((err as Error).message);
+  //     return null;
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }, [fetchJobPosts])
 
 
   //update hooks
@@ -223,7 +224,7 @@ useEffect(() => {
     formData,
     handleCreateJobPost,
     fetchJobPosts,
-    handleUpdateJobPost,
+    // handleUpdateJobPost,
     handleDeleteJobPost,
     updateFormData,
     approvedJobPosts: approvedJobPosts || [], //naka array para hindi mag empty array

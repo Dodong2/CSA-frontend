@@ -89,3 +89,59 @@ export const rejectJobPost = async (id: string, reason: string = 'Not specified'
         throw error
     }
 }
+
+//Delete
+export const deleteDetails = async(id: string) => {
+    try {
+        const formData = new FormData()
+        formData.append('id', id)
+        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=delete_detail', {
+            method: 'POST',
+            body: formData
+        })
+
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const result = await response.json()
+        return result
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+}
+
+export const updateDetails = async (data: JobPost) => {
+    try {
+        const formData = new FormData();
+        formData.append('id', data.id);
+        formData.append('business_name', data.business_name)
+        formData.append('descriptions', data.descriptions)
+        formData.append('work_schedule', data.work_schedule)
+        formData.append('skills_required', data.skills_required)
+        formData.append('experience', data.experience)
+        formData.append('employment_type', data.employment_type)
+        formData.append('work_positions', data.work_positions)
+        formData.append('company_email', data.company_email)
+        formData.append('contact_number', data.contact_number)
+        formData.append('locations', data.locations)
+        formData.append('collar', data.collar)
+
+        const response = await fetch('http://localhost/Career Search Agency/admin.php?action=update_job', {
+            method: 'POST',
+            body: formData,
+        })
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const result = await response.json()
+        return result  
+
+    } catch (error) {
+        console.log(error)
+        throw error
+    }
+};

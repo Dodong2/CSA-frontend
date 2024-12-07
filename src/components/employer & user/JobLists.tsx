@@ -5,16 +5,28 @@ import { useState } from "react"
 import csa from '../../assets/img/csa.svg'
 import noresult from '../../assets/img/no_result.svg'
 /********** icon **********/
-import { TbTie } from "react-icons/tb";
+import { FaBookmark } from "react-icons/fa";
 import { RiArrowDropDownLine } from "react-icons/ri";/********** Hooks **********/
-import { useJobLists } from "../../hooks/useJobList"
 import { handleSendResume, handleOpenMap } from "../../hooks/user button functions/userFunction"
 import { FiMenu } from "react-icons/fi";
 /********** Hooks **********/
 import { useSidebar } from "../../hooks/user button functions/userFunction";
+import { useJobLists } from "../../hooks/useJobList"
 /********** Component **********/
 import SearchBar from "../common/SearchBar"
 import SideBar from "../../components/common/SideBar"
+
+
+const collarColors: Record<string, string> = {
+  "Pink collar": "pink",
+  "Green collar": "green",
+  "White collar": "white",
+  "Blue collar": "blue",
+  "Grey collar": "gray",
+};
+
+
+
 
 const JobLists = () => {
   const {loading, joblists} = useJobLists()
@@ -41,6 +53,7 @@ const JobLists = () => {
   const handleBlur = () => {
     setTimeout(() => setIsFocused(false), 200);
   }
+  
   
 
   return (
@@ -103,8 +116,10 @@ const JobLists = () => {
               <div className="arrow-button"><RiArrowDropDownLine/></div>
                 <div className="titles"><h1>{detail.business_name}</h1></div>  
                 <div className="works"><h2>{detail.work_positions}</h2></div>
-                <div className="collars"><p>Type of Collar: {detail.collar} <TbTie/></p></div>
-              </div>
+                <div className="collars">
+                    <p>Type of Collar: {detail.collar} <span style={{color: collarColors[detail.collar] || "black", }}> <FaBookmark /></span></p>
+                  </div>
+              </div><br/>
             </summary>
           </details>
           {/*contents descriptions to */}

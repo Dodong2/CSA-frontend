@@ -1,5 +1,4 @@
 import { JobPostRequest, JobPost } from "../utils/Types"
-import { JobPostUpdate } from "../utils/Types"
 //para sa employer Job post request
 export const createJobPost = async (data: JobPostRequest) => {
     try {
@@ -53,75 +52,6 @@ export const getEmployerJobPosts = async () => {
         throw new error
     }
 }
-
-//para sa employer update job post
-export const updateJobPost = async (data: JobPostUpdate) => {
-    try {
-        const formData = new FormData()
-        formData.append('id', data.id.toString())
-        
-        // Append all fields except id
-        Object.entries(data).forEach(([key, value]) => {
-            if (key !== 'id' && value !== undefined) {
-                formData.append(key, value.toString())
-            }
-        })
-
-        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=update_job_post', {
-            method: 'POST',
-            credentials: 'include',
-            body: formData
-        })
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const result = await response.json()
-        return result
-
-    } catch (error) {
-        console.log(error)
-        throw error
-    }
-}
-
-
-export const updateDetails = async (data: JobPost) => {
-    try {
-        const formData = new FormData();
-        formData.append('id', data.id);
-        formData.append('business_name', data.business_name)
-        formData.append('descriptions', data.descriptions)
-        formData.append('work_schedule', data.work_schedule)
-        formData.append('skills_required', data.skills_required)
-        formData.append('experience', data.experience)
-        formData.append('employment_type', data.employment_type)
-        formData.append('work_positions', data.work_positions)
-        formData.append('company_email', data.company_email)
-        formData.append('contact_number', data.contact_number)
-        formData.append('locations', data.locations)
-        formData.append('collar', data.collar)
-
-        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=update_job_post', {
-            method: 'GET',
-            body: formData,
-            credentials: 'include'
-        })
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        const result = await response.json()
-        return result.success ? result.data : null;   
-
-    } catch (error) {
-        console.log(error)
-        throw error
-    }
-};
-
 
 
 // para sa employer delete job post

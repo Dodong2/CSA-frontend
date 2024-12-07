@@ -15,7 +15,7 @@ const Modal1: React.FC<Modal1Props> = ({ setModal1 }) => {
       <div className="modal-content1">
         <div className="modal-logout-header"><button onClick={() => setModal1(false)}><IoClose /></button></div>
         <div className="modal-logout-img"><img src={pic5} alt="pic5"/></div>
-        <div className="modal-logout-txt"><p>Are you sure</p></div><br/>
+        <div className="modal-logout-txt"><p>Are you sure?</p></div><br/>
         <div className="logout-btn"><button>Yes</button></div>
       </div>
     </>

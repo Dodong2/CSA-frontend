@@ -25,9 +25,7 @@
   color: var(--primary-text-light);
 }
 
-button:active {
-  transform: scale(0.80);
-}
+
 
 /********** introductions **********/
 .introductions {
@@ -52,7 +50,7 @@ button:active {
   font-family: lora;
   font-weight: 300;
   letter-spacing: 1px;
-  font-size: clamp(0.1rem, 5vw, 0.5rem);
+  font-size: clamp(0.1rem, 5vw, 1.2rem);
 }
 
 .pictures-svg {
@@ -645,10 +643,12 @@ nav {
   max-width: 500px;
   font-weight: 600;
 }
+.details__title .collars {
+  margin-top: 10px;
+}
 
 .details__title .collars p {
   font-family: lora;
-  color: var(--primary-color-dark);
   font-size: clamp(1.3rem, 5vw, 1.2rem);
   white-space: normal;
   word-wrap: break-word;
@@ -656,6 +656,12 @@ nav {
   margin: 0 auto;
   width: 100%;
   max-width: 500px;
+}
+
+.details__title .collars p span {
+  background-color: var(--primary-color-white-grey);
+  padding: 5px;
+  border-radius: 10px;
 }
 
 .details__desc .details__desc-inner .title-details {
@@ -666,11 +672,11 @@ nav {
   background-color: var(--primary-color-white-grey);
   color: var(--primary-color);
   font-family: poppins-bold;
-  display: inline-block; /* Allows the div to resize based on its content */
-  width: auto; /* Automatically adjusts width to fit the content */
-  padding: 5px; /* Optional: Add spacing around the text */
-  word-wrap: break-word; /* Breaks long words */
-  max-width: 100%; /* Ensures the div doesn’t exceed the parent's width */
+  display: inline-block; 
+  width: auto; 
+  padding: 5px; 
+  word-wrap: break-word; 
+  max-width: 100%; 
   box-sizing: border-box;
 }
 
@@ -781,10 +787,6 @@ nav {
 
 .details-btn button:active {
   transform: scale(0.95);
-}
-
-table, th, td {
-  border: 1px solid;
 }
 
 /********** pang OTP **********/
@@ -992,63 +994,398 @@ table, th, td {
 }
 
 /********** post **********/
-.job-post-form {
-  background-color: var(--primary-color-white-grey);
+.job-post-form-title {
+  text-align: center;
+}
+.job-post-form-title h1 {
+  font-family: poppins-bold;
+  color: var(--primary-color-dark);
+  font-size: clamp(2.3rem, 5vw, 1.5rem);
+  white-space: normal;
+  word-wrap: break-word;
+  word-break: break-word;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.job-post-container {
   padding: 20px;
+}
+
+.job-post-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color-white-grey);
   border-radius: 10px;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px;
-  font-family: Arial, sans-serif;
 }
 
-.job-post-form h2 {
-  text-align: center;
-  color: var(--primary-text-color);
-  margin-bottom: 20px;
-}
-
-.job-post-form input,
-.job-post-form textarea {
+.job-post-form form {
   width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.job-post-form form .layer1 {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
+  gap: 7px;
+
+}
+
+.job-post-form form .layer1 .post-left, .job-post-form form .layer1 .post-right {
+  width: 100%;
+  max-width: 500px;
+  display: grid;
+}
+
+
+
+.job-post-form form .layer2 {
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.job-post-form form textarea, .job-post-form form input, .job-post-form form select {
+  font-family: poppins-light;
+  color: var(--primary-color-text);
   padding: 10px;
-  margin-bottom: 15px;
-  border: 1px solid var(--primary-color-light);
-  border-radius: 5px;
-  font-size: 14px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  width: 100%;
+  background-color: var(--primary-color-white-grey);
   outline: none;
-  transition: border-color 0.3s ease;
 }
 
-.job-post-form input:focus,
-.job-post-form textarea:focus {
-  border-color: var(--primary-color-dark);
+.job-post-form form textarea:focus, .job-post-form form input:focus, .job-post-form form select:focus {
+  border-color: var(--primary-color);
+  background-color: var(--primary-text-light); 
+  transition: all .2s ease;
 }
 
-.job-post-form button {
+select {
   width: 100%;
-  background-color: var(--button-primary-bg);
-  color: var(--button-primary-text);
-  padding: 10px;
-  border: none;
+  border: 2px solid var(--primary-color); 
   border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: var(--primary-color-white-grey);
+  outline: none; 
+  transition: border-color 0.3s ease, background-color 0.3s ease; 
 }
 
-.job-post-form button:hover {
+select:focus {
+  border-color: var(--primary-color-dark);
+  background-color: var(--primary-color-light); 
+  transition: all .2s ease;
+}
+
+option {
+  color: var(--primary-color-dark); 
+  background-color: var(--primary-color-white-grey); 
+}
+
+.layer2 button {
+  display: grid;
+  align-self: center;
+  justify-self: center;
+  font-family: poppins-light;
   background-color: var(--primary-color-dark);
+  padding: 10px;
+  border: 80px;
+  border-radius: 10px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: var(--primary-text-light);
+  transition: all .2s ease;
+  width: 200px;
 }
 
-.job-post-form button:disabled {
-  background-color: var(--brand-warning);
-  cursor: not-allowed;
+.layer2 button:hover {
+  background-color: var(--primary-color);
 }
 
-.job-post-form .error-message {
-  color: var(--brand-danger);
+.layer2 .error p {
+ text-align: center;
+}
+
+
+/********** tables **********/
+.table-container {
+  margin: 20px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-color-white-grey);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.table-container h3 {
   text-align: center;
-  margin-top: 10px;
+  font-family: poppins-bold;
+  color: var(--primary-color);
 }
+
+table {
+  border: none;
+  border-radius: 10px;
+}
+
+th, tr, td {
+  border: 1px solid var(--primary-color-dark);
+  border-radius: 5px;
+}
+
+th {
+  font-family: poppins-light;
+  font-size: clamp(0.3rem, 5vw, 0.9rem);
+  padding: 10px;
+  background-color: var(--primary-color-dark);
+  color: var(--primary-text-light);
+}
+
+tr, td {
+  padding: 3px;
+  transition: all .2s ease-out;
+  text-align: left;
+  font-size: clamp(0.3rem, 5vw, 0.8rem);
+}
+
+tr:hover {
+  background-color: var(--primary-color);
+}
+
+td:hover {
+  color: var(--primary-text-light);
+}
+
+
+td button {
+  gap: 20px;
+  width: 100%;
+  border: none;
+  padding: 3px;
+  border-radius: 10px;
+  transition: all .2s ease;
+  color: var(--primary-text-light);
+  background-color: var(--secondary-color-light);
+}
+
+td button:hover {
+  background-color: var(--brand-danger);
+}
+
+.job-view {
+  padding: 10px;
+}
+
+/********** Admin DashBoard **********/
+.dashboard-sidebar {
+  position: fixed;
+  display: grid;
+  grid-template-columns: 1fr;
+  height: 100vh;
+  z-index: 1;
+}
+
+
+.dashboard {
+  width: 300px;
+  background-color: var(--primary-text-color);
+  border-right: 1px solid #ddd; 
+  padding: 20px;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-title {
+  text-align: center;
+}
+
+.dashboard-title h1 {
+  font-family: poppins-bold;
+  letter-spacing: 1px;
+  font-size: clamp(1.3rem, 5vw, 2.1rem);
+  white-space: wrap;
+  margin: 0 auto;
+  color: var(--primary-color);
+}
+
+.dashboard h2 {
+  font-family: poppins-bold;
+  letter-spacing: 1px;
+  font-size: clamp(1.3rem, 5vw, 2.1rem);
+  white-space: wrap;
+  margin: 0 auto;
+  color: var(--primary-color);
+}
+
+
+.dashboard h2 {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}
+
+.admin-btn {
+  margin-top: 20px;
+  width: 100%;
+  display: grid;
+  justify-self: center;
+  align-self: center;
+  gap: 10px;
+}
+
+.admin-btn a {
+  text-decoration: none;
+}
+
+.admin-btn button {
+  font-family: poppins-bold;
+  background-color: var(--primary-text-light);
+  font-size: clamp(1rem, 5vw, 1.5rem);
+  border-radius: 10px;
+  width: 100%;
+  transition: all .2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  padding: 10px 16px; 
+  border: none;
+}
+
+.admin-btn button:hover {
+  background-color: var(--primary-color);
+  color: var(--primary-text-light);
+}
+
+.logo-svg {
+  margin: auto;
+  border-radius: 5px;
+  height: 70px;
+  width: 250px;
+  overflow: hidden;
+}
+
+.logo-svg img {
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    object-fit: contain;
+}
+
+.dashboard-container {
+  margin-left: 300px;
+  padding: 20px;
+
+}
+
+.bar-graph {
+  border: 1px solid var(--primary-color-white-grey);
+  width: 100%;
+  margin: 0 auto; 
+  z-index: 2;
+  height: 250px;
+  background-color: var(--primary-color-white-grey);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.pie-graph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--primary-color-white-grey);
+  width: 100%;
+  margin: 0 auto;
+  height: 250px;
+  z-index: 2;
+  padding: 10px;
+  background-color: var(--primary-color-white-grey);
+  border-radius: 10px;
+}
+
+.graphs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 100px;
+}
+
+/********** dashboard tables **********/
+.dashboard-table-container {
+  margin: 20px;
+  padding: 10px;
+  font-family: Arial, sans-serif;
+  background-color: var(--primary-color-white-grey);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.dashboard-table-container h3 {
+  text-align: center;
+  font-family: poppins-bold;
+  color: var(--primary-color);
+}
+
+.dashboard-table-container table {
+  border: none;
+  border-radius: 10px;
+}
+
+.dashboard-table-container th,  .dashboard-table-container tr, .dashboard-table-container td {
+  border: 1px solid var(--primary-color-dark);
+  border-radius: 5px;
+}
+
+.dashboard-table-container th {
+  font-family: poppins-light;
+  font-size: clamp(0.3rem, 5vw, 0.7rem);
+  padding: 10px;
+  background-color: var(--primary-color-dark);
+  color: var(--primary-text-light);
+}
+
+.dashboard-table-container tr, .dashboard-table-container td {
+  padding: 3px;
+  transition: all .2s ease-out;
+  text-align: left;
+  font-size: clamp(0.3rem, 5vw, 0.8rem);
+}
+
+.dashboard-table-container tr:hover {
+  background-color: var(--primary-color);
+}
+
+.dashboard-table-container td:hover {
+  color: var(--primary-text-light);
+}
+
+
+.dashboard-table-container td button {
+  gap: 20px;
+  width: 100%;
+  border: none;
+  padding: 3px;
+  border-radius: 10px;
+  transition: all .2s ease;
+  color: var(--primary-text-light);
+  background-color: var(--secondary-color-light);
+}
+
+.dashboard-table-container td button:hover {
+  background-color: var(--brand-danger);
+}
+
+.dashboard-details {
+  padding: 10px;
+}
+
 
 

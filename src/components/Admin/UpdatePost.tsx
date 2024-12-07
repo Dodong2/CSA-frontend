@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useEmployerJobPosts } from "../../hooks/usePost"
-import { JobPost, JobPostRequest, JobPostUpdate } from "../../utils/Types";
+import { JobPost, UpdateDetailsProps } from "../../utils/Types";
 import { useHandleUpdate } from "../../hooks/user button functions/userFunction";
-import { UpdateDetailsProps } from "../../utils/Types";
 
 
 const UpdatePost:React.FC<UpdateDetailsProps> = ({ id }) => {
@@ -21,9 +20,13 @@ const UpdatePost:React.FC<UpdateDetailsProps> = ({ id }) => {
     }, [fetchDetailToUpdate, id, loading, setUpdateData])
   
       if(!updateData) return <p>Loading...</p>
+      
   return (
     <>
-      <div>
+    <div className="job-post-form-title">
+    <h1> Job Update </h1>
+    </div>
+      <div className="job-post-form">
       <form onSubmit={(e) =>{ e.preventDefault(); handleSubmit()}}>
         <input type="text" placeholder="Business name,Company name or Job offer" name="business_name" value={updateData.business_name} onChange={handleChange} required/><br/>
         <textarea rows={5} cols={50} placeholder="a Brief Descriptions" name="descriptions" value={updateData.descriptions} onChange={handleChange} required/><br/>

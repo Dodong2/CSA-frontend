@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react"; 
-import { JobPost } from "../utils/Types"; 
+import { JobPost, UpdateFormData } from "../utils/Types"; 
 import { 
     // createJobPost, 
     // getEmployerJobPosts, 
@@ -84,6 +84,7 @@ export const useEmployerJobPost = () => {
             setLoading(false);
         }
     }, [fetchPendingJobPosts]);
+
 
     return {
         error,

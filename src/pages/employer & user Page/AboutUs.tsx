@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 /********** assets **********/
 import logo from '../../assets/img/logo.svg'
 import devpic from '../../assets/img/sample.png'
-/********** components **********/
+/********** icons **********/
 import { FaArrowLeftLong } from "react-icons/fa6";
 
 
