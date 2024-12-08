@@ -1,5 +1,5 @@
 /********** react library **********/
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
 /********** Hooks **********/
 import { useEmployerJobPosts } from "../../hooks/usePost"
 
@@ -36,9 +36,7 @@ const PostJobs = () => {
         fetchJobPosts,
         updateFormData,
       } = useEmployerJobPosts();
-      //para sa collars auto fill
-  //     const [jobType, setJobType] = useState("");
-  // const [collarType, setCollarType] = useState("");
+
   
       // Fetch job posts when component mounts
   useEffect(() => {
@@ -54,7 +52,6 @@ const PostJobs = () => {
   const collar = collarTypes[workPosition] || "Unknown";
   updateFormData("collar", collar);
 };
-
 
 
   return (
@@ -91,6 +88,7 @@ const PostJobs = () => {
         <div className="error">
         {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>{error}</p>}
         </div>
+        
         </form>
         </div>
       </div>

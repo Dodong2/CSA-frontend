@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
 import { useEmployerJobPosts } from "../../hooks/usePost"
-import { JobPost, UpdateDetailsProps } from "../../utils/Types";
+import { UpdateDetailsProps } from "../../utils/Types";
 import { useHandleUpdate } from "../../hooks/user button functions/userFunction";
 
 
@@ -20,7 +19,7 @@ const UpdatePost:React.FC<UpdateDetailsProps> = ({ id }) => {
     }, [fetchDetailToUpdate, id, loading, setUpdateData])
   
       if(!updateData) return <p>Loading...</p>
-      
+
   return (
     <>
     <div className="job-post-form-title">

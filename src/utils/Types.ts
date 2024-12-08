@@ -11,7 +11,6 @@ export interface JobPostRequest {
   contact_number: string
   locations: string
   collar: string
-  
 }
 
 export interface JobPost extends JobPostRequest {

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { JobPost , UpdateFormData} from "../../utils/Types";
+import {UpdateFormData} from "../../utils/Types";
 import { updateDetails } from "../../services/AdminService";
 
 //pang open ng gmail at makapagsend resume JobPosts.tsx

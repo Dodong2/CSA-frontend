@@ -145,3 +145,23 @@ export const updateDetails = async (data: JobPost) => {
         throw error
     }
 };
+
+//pang get ng mga rejected na job
+export const getRejected = async () => {
+    try {
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=get_reject')
+        
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const result = await response.json()
+        console.log("Fetched data:", result);
+        return result
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return { success: false, jobDetails: [] }; // Provide a fallback response
+    }
+}
+

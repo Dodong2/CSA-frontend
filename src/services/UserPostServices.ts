@@ -1,5 +1,7 @@
 import { JobPostRequest, JobPost } from "../utils/Types"
 //para sa employer Job post request
+
+
 export const createJobPost = async (data: JobPostRequest) => {
     try {
         const formData = new FormData()
@@ -133,5 +135,4 @@ export const getJobs = async () => {
         return { success: false, jobDetails: [] }; // Provide a fallback response
     }
 }
-
 

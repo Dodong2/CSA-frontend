@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 /********** Services **********/
 import { getJobs } from "../services/UserPostServices";
-import { deleteDetails} from "../services/AdminService";
+import { deleteDetails, getRejected } from "../services/AdminService";
 import { JobListsTypes, UpdateFormData } from "../utils/Types";
-import JobLists from "../components/employer & user/JobLists";
 
 
 export const useJobLists = () => {
     const [loading, setLoading] = useState<boolean>(false)
     const [joblists, setJobLists] = useState<JobListsTypes[]>([])
+    const [jobreject, setJobReject] = useState<JobListsTypes[]>([])
 
+    //pang get ng mga job
     useEffect(() => {
         const JobsLists = async () => {
             setLoading(true)
@@ -21,6 +22,20 @@ export const useJobLists = () => {
         }
         JobsLists()
     }, [])
+
+
+    //pang get ng mga na rejected na jobs
+    useEffect(() => {
+      const JobReject = async () => {
+          setLoading(true)
+          const result = await getRejected()
+          if(result.success) {
+              setJobReject(result.jobreject)
+          }
+          setLoading(false)
+      }
+      JobReject()
+  }, [])
 
 
      //update hooks
@@ -68,5 +83,5 @@ export const useJobLists = () => {
         }
       }
 
-    return {loading, joblists, removeDetails, fetchDetailToUpdate }
+    return {loading, joblists, jobreject, removeDetails, fetchDetailToUpdate }
 }

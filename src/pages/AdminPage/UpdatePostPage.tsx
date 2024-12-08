@@ -15,7 +15,7 @@ const UpdatePostPage = () => {
   return (
     <>
     <div className='back'>
-        <Link to="/admin"><button><FaArrowLeftLong/></button></Link>
+        <Link to="/details"><button><FaArrowLeftLong/></button></Link>
     </div>
         <UpdatePost id={id}/>
     </>

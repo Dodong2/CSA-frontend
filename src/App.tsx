@@ -32,6 +32,7 @@ function App() {
   const Pending = lazy(() => import('./pages/AdminPage/PendingPage'))
   const Details = lazy(() => import('./pages/AdminPage/DetailsPage'))
   const Update = lazy(() => import('./pages/AdminPage/UpdatePostPage'))
+  const Rejected = lazy(() => import('./pages/AdminPage/RejectedPostPage'))
 
   return (
     <>
@@ -54,6 +55,7 @@ function App() {
             <Route  path="/admin" element={<AdminDashBoard />} />
             <Route path="/pending" element={<Pending />} />
             <Route path="/details" element={<Details />} />
+            <Route path="/reject" element={<Rejected />} />
           </Routes>
         </Suspense>
       </Router>

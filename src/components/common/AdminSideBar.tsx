@@ -20,7 +20,8 @@ const AdminSideBar = () => {
             <div className="admin-btn">
                 {/* <Link to=""><button>Overview <GoGraph/></button></Link> */}
                 <Link to="/pending"><button>Pending Post <MdOutlinePendingActions/></button></Link>
-                <Link to='/details'><button>Details <BiCommentDetail/></button></Link>
+                <Link to='/details'><button>Approve Details <BiCommentDetail/></button></Link>
+                <Link to='/reject'><button>Rejected  Details <BiCommentDetail/></button></Link>
                 <Link to=""><button>Help</button></Link>
                 </div>
         </aside>

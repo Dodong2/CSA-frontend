@@ -4,7 +4,6 @@ import {
   createJobPost, 
   getEmployerJobPosts, 
   getApprovedEmployerJobPosts,
-  // updateJobPost, 
   deleteJobPost 
 } from '../services/UserPostServices';
 
@@ -13,6 +12,7 @@ export const useEmployerJobPosts = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [approvedJobPosts, setApprovedJobPosts] = useState<JobPost[]>([])
+  
   
 
   // Initial state for form
@@ -30,6 +30,7 @@ export const useEmployerJobPosts = () => {
     collar: '',
   })
 
+  
   // para makita yung employer job post
   const fetchJobPosts = useCallback(async () => {
     setLoading(true)
@@ -54,7 +55,7 @@ export const useEmployerJobPosts = () => {
         setError(null)
 
         try {
-            const result = await createJobPost(formData)
+          const result = await createJobPost(formData);
             
             if (result.success) {
                 await fetchJobPosts()
@@ -102,23 +103,6 @@ useEffect(() => {
     fetchData()
   }, [])
 
-  // // Update a job post
-  // const handleUpdateJobPost = useCallback(async (updatedPost: JobPostUpdate) => {
-  //   setLoading(true);
-  //   setError(null);
-
-  //   try {
-  //     const result = await updateJobPost(updatedPost);
-  //     await fetchJobPosts(); // Refresh pending posts
-  //     await fetchApprovedJobPosts(); // Refresh approved posts
-  //     return result;
-  //   } catch (err) {
-  //     setError((err as Error).message);
-  //     return null;
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }, [fetchJobPosts])
 
 
   //update hooks
@@ -146,10 +130,10 @@ useEffect(() => {
         contact_number: '',
         locations: '',
         collar: '',
-        user_id: 0, // Default value
-    status: 'pending', // Default value
-    created_at: '', // Default value
-    updated_at: '', //
+        user_id: '',
+        status: 'pending', 
+        created_at: '', 
+        updated_at: '', 
       });
     } else {
       console.error("Data is not an array:", data);
@@ -224,7 +208,6 @@ useEffect(() => {
     formData,
     handleCreateJobPost,
     fetchJobPosts,
-    // handleUpdateJobPost,
     handleDeleteJobPost,
     updateFormData,
     approvedJobPosts: approvedJobPosts || [], //naka array para hindi mag empty array
