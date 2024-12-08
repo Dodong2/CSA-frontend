@@ -2,37 +2,74 @@ import { JobPostRequest, JobPost } from "../utils/Types"
 //para sa employer Job post request
 
 
-export const createJobPost = async (data: JobPostRequest) => {
+// export const createJobPost = async (data: JobPostRequest) => {
+//     try {
+//         const formData = new FormData()
+//         Object.entries(data).forEach(([key, value]) => {
+//             formData.append(key, value)
+//         })
+
+//         const response = await fetch('http://localhost/Career Search Agency/admin.php?action=create_post_employer', {
+//             method: 'POST',
+//             credentials: 'include',
+//             body: formData
+//         })
+
+//         for (const [key, value] of formData.entries()) {
+//             console.log(`${key}: ${value}`);
+//         }
+
+//         if (!response.ok) {
+//             const errorText = await response.text();
+//             console.error('Error response:', errorText);
+//             throw new Error(`HTTP error! status: ${response.status}`);
+//           }
+
+//         const result = await response.json()
+//         return result
+
+//     } catch (error) {
+//         console.log(error)
+//         throw error
+//     }
+// }
+
+
+export const createJobPost = async (data: JobPostRequest, files: { businessPermit: File | null; validId: File | null }) => {
     try {
-        const formData = new FormData()
+        const formData = new FormData();
         Object.entries(data).forEach(([key, value]) => {
-            formData.append(key, value)
-        })
+            formData.append(key, value);
+        });
+
+        if (files.businessPermit) {
+            formData.append('business_permit_path', files.businessPermit);
+        }
+
+        if (files.validId) {
+            formData.append('valid_id_path', files.validId);
+        }
 
         const response = await fetch('http://localhost/Career Search Agency/admin.php?action=create_post_employer', {
             method: 'POST',
             credentials: 'include',
-            body: formData
-        })
-
-        for (const [key, value] of formData.entries()) {
-            console.log(`${key}: ${value}`);
-        }
+            body: formData,
+        });
 
         if (!response.ok) {
             const errorText = await response.text();
             console.error('Error response:', errorText);
             throw new Error(`HTTP error! status: ${response.status}`);
-          }
+        }
 
-        const result = await response.json()
-        return result
-
+        const result = await response.json();
+        return result;
     } catch (error) {
-        console.log(error)
-        throw error
+        console.error(error);
+        throw error;
     }
-}
+};
+
 
 // para sa get employer job post
 export const getEmployerJobPosts = async () => {

@@ -35,6 +35,7 @@ const PostJobs = () => {
         handleCreateJobPost,
         fetchJobPosts,
         updateFormData,
+        handleFileChange
       } = useEmployerJobPosts();
 
   
@@ -83,6 +84,14 @@ const PostJobs = () => {
         <textarea rows={5} cols={50} placeholder="Explain Work schedule" value={formData.work_schedule} onChange={(e) => updateFormData('work_schedule',e.target.value)} /><br/>
         <textarea rows={5} cols={50} placeholder="Explain skills to be needed (optional)" value={formData.skills_required} onChange={(e) => updateFormData('skills_required',e.target.value)}/><br/>
         <textarea rows={5} cols={50} placeholder="Explain experience (optional)" value={formData.experience} onChange={(e) => updateFormData('experience',e.target.value)}/><br/>
+        <input
+        type="file"
+        onChange={(e) => handleFileChange('businessPermit', e.target.files ? e.target.files[0] : null)}
+    />
+    <input
+        type="file"
+        onChange={(e) => handleFileChange('validId', e.target.files ? e.target.files[0] : null)}
+    />
         <button type="submit" disabled={loading}> {loading ? 'Posting...' : 'Post'}</button>
         </div>
         <div className="error">

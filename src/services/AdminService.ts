@@ -146,7 +146,7 @@ export const updateDetails = async (data: JobPost) => {
     }
 };
 
-//pang get ng mga rejected na job
+//pang get ng mga rejected na jobs 
 export const getRejected = async () => {
     try {
         const response = await fetch('http://localhost/Career Search Agency/employer.php?action=get_reject')

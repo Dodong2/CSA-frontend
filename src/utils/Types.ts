@@ -19,6 +19,8 @@ export interface JobPost extends JobPostRequest {
   status: 'pending' | 'approved' | 'rejected';
   created_at: string;
   updated_at: string;
+  business_permit_path: string;
+  valid_id_path: string;
 }
 
 export interface JobListsTypes {

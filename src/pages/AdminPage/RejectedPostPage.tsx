@@ -9,7 +9,7 @@ const RejectedPostPage = () => {
   return (
     <>
     <div className='back'>
-        <Link to="/details"><button><FaArrowLeftLong/></button></Link>
+        <Link to="/admin"><button><FaArrowLeftLong/></button></Link>
     </div>
       <RejectedPost/>
     </>

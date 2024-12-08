@@ -30,7 +30,16 @@ export const useEmployerJobPosts = () => {
     collar: '',
   })
 
-  
+  const [files, setFiles] = useState<{ businessPermit: File | null; validId: File | null }>({
+    businessPermit: null,
+    validId: null,
+});
+
+const handleFileChange = (key: 'businessPermit' | 'validId', file: File | null) => {
+  setFiles((prev) => ({ ...prev, [key]: file }));
+};
+
+
   // para makita yung employer job post
   const fetchJobPosts = useCallback(async () => {
     setLoading(true)
@@ -55,7 +64,7 @@ export const useEmployerJobPosts = () => {
         setError(null)
 
         try {
-          const result = await createJobPost(formData);
+          const result = await createJobPost(formData, files);
             
             if (result.success) {
                 await fetchJobPosts()
@@ -73,6 +82,7 @@ export const useEmployerJobPosts = () => {
                   locations: '',
                   collar: '',
                 });
+                setFiles({ businessPermit: null, validId: null })
             } else {
                 // Handle unsuccessful response
                 setError(result.message || 'Failed to create job post')
@@ -87,7 +97,7 @@ export const useEmployerJobPosts = () => {
             setLoading(false)
         }
     },
-    [formData, fetchJobPosts]
+    [formData, fetchJobPosts, files]
 )
 
 //pang viewpost
@@ -213,5 +223,6 @@ useEffect(() => {
     approvedJobPosts: approvedJobPosts || [], //naka array para hindi mag empty array
     fetchApprovedJobPosts,
     fetchDetailToUpdate,
+    handleFileChange
   };
 };

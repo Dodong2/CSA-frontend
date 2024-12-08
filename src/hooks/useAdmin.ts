@@ -1,10 +1,6 @@
 import { useState, useCallback } from "react"; 
 import { JobPost } from "../utils/Types"; 
 import { 
-    // createJobPost, 
-    // getEmployerJobPosts, 
-    // updateJobPost, 
-    // deleteJobPost,
     getPendingJobPosts,
     getApprovedJobPosts,
     approveJobPost,
