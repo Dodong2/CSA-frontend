@@ -144,6 +144,8 @@ useEffect(() => {
         status: 'pending', 
         created_at: '', 
         updated_at: '', 
+        business_permit_path: '',
+        valid_id_path: ''
       });
     } else {
       console.error("Data is not an array:", data);

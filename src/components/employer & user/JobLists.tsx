@@ -6,9 +6,11 @@ import csa from '../../assets/img/csa.svg'
 import noresult from '../../assets/img/no_result.svg'
 /********** icon **********/
 import { FaBookmark } from "react-icons/fa";
-import { RiArrowDropDownLine } from "react-icons/ri";/********** Hooks **********/
+import { RiArrowDropDownLine } from "react-icons/ri";
+/********** Hooks **********/
 import { handleSendResume, handleOpenMap } from "../../hooks/user button functions/userFunction"
 import { FiMenu } from "react-icons/fi";
+import { FcApproval } from "react-icons/fc";
 /********** Hooks **********/
 import { useSidebar } from "../../hooks/user button functions/userFunction";
 import { useJobLists } from "../../hooks/useJobList"
@@ -134,7 +136,7 @@ const JobLists = () => {
                 <div><div className="title-details"><h3>Company Email adress:</h3></div><div className="description">{detail.company_email}</div></div><br/>
                 <div><div className="title-details"><h3>Locations:</h3></div><div className="description">{detail.locations}</div></div><br/>
                 <div><div className="title-details"><h3>Contact number:</h3></div><div className="description">{detail.contact_number}</div></div><br/>
-                <div><div className="title-details"><h3>Admin Approval:</h3></div><div className="description">{detail.status}</div></div><br/>
+                <div><div className="title-details"><h3>Admin Approval:</h3></div><div className="description">{detail.status} <FcApproval/></div></div><br/>
               <div className="details-btn">
                 <button onClick={() => handleSendResume(detail.company_email)}>Send Resume</button> 
                 <button onClick={() => handleOpenMap(detail.locations)}>Locations</button>

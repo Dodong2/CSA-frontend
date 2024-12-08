@@ -38,6 +38,7 @@ export interface JobListsTypes {
   collar: string
   status: string
   created_at: string
+  rejection_reason: string
 }
 
 
@@ -60,6 +61,8 @@ export interface UpdateFormData {
   status: 'pending' | 'approved' | 'rejected';
   created_at: string
   updated_at: string
+  business_permit_path: string;
+  valid_id_path: string;
 }
 
 //Update Data Props sa UpdateDetails.tsx
@@ -87,6 +90,7 @@ export interface ChartData {
     data: number[];
     backgroundColor: string[];
     borderColor: string[]
-    borderWidth: number
+    borderWidth: number,
   }[];
+  
 }

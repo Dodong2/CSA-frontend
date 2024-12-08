@@ -63,3 +63,21 @@ export const loginAcc = async(email: string, password: string) => {
     return result
 }
 
+//logout 
+export const logoutAcc = async() => {
+ try {
+    const response = await fetch('http://localhost/Career Search Agency/reglog.php?action=logout', {
+        method: 'POST',
+        credentials: 'include',
+    })
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const result = await response.json()
+    return result
+} catch (error) {
+    console.log(error)
+    throw error
+}
+}

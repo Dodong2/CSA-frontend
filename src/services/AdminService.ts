@@ -127,6 +127,7 @@ export const updateDetails = async (data: JobPost) => {
         formData.append('contact_number', data.contact_number)
         formData.append('locations', data.locations)
         formData.append('collar', data.collar)
+       
 
         const response = await fetch('http://localhost/Career Search Agency/admin.php?action=update_job', {
             method: 'POST',

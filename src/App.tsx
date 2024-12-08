@@ -9,6 +9,7 @@ import './assets/css/App.css'
 import './assets/css/color.css'
 import './assets/css/default.css'
 import './assets/css/media.css'
+import Loading from "./components/common/Loading";
 
 
 
@@ -20,6 +21,7 @@ function App() {
   const Register = lazy(() => import('./pages/AuthPage/RegisterPage'))
   const Login = lazy(() => import('./pages/AuthPage/LoginPage'))
   const VerifyOTP = lazy(() => import('./pages/AuthPage/VerifyOTPPages'))
+  const Confirm = lazy(() => import('./pages/AuthPage/ConfirmPage'))
   // User Page
   const Introduction = lazy(() => import('./pages/employer & user Page/introductionPage'));
   const RegLog = lazy(() => import('./pages/employer & user Page/RegLogPages'));
@@ -37,12 +39,13 @@ function App() {
   return (
     <>
       <Router>
-        <Suspense fallback={<>Loading...</>}>
+        <Suspense fallback={<><Loading/></>}>
           <Routes>
             {/* Auth Page */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/otp" element={<VerifyOTP />} />
+            <Route path="/confirm" element={<Confirm />} />
             {/* User Page */}
             <Route path="/" element={<Introduction />} />
             <Route path="/reglog" element={<RegLog />} />

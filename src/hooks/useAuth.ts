@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 /********** Services **********/
-import { registerAcc, verifyRegistration, loginAcc } from "../services/AuthServices";
+import { registerAcc, verifyRegistration, loginAcc, logoutAcc } from "../services/AuthServices";
 
 export const useAuth = () => {
     const [loading, setLoading] = useState(false)
@@ -45,7 +45,7 @@ export const useAuth = () => {
             if(result.success) {
                 setRegisterEmail(null)
                 localStorage.removeItem('registrationEmail')
-                navigate('/home')
+                navigate('/confirm')
             } else {
                 setError(result.message)
             }
@@ -74,6 +74,23 @@ export const useAuth = () => {
         }
     }
 
-    return {register, verifyOTP, login, loading, error  }
+    const logout = async () => {
+        setLoading(true);
+        setError(null);
+        try {
+            const result = await logoutAcc();
+            if (result.success) {
+                navigate('/login'); // Redirect to login page
+            } else {
+                setError(result.message);
+            }
+        } catch (err) {
+            setError('Logout failed. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return {register, verifyOTP, login, loading, error, logout  }
 
 }

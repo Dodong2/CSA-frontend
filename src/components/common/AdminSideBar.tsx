@@ -1,7 +1,9 @@
 /********** icon **********/
 // import { GoGraph } from "react-icons/go";
+// import { FcApproval } from "react-icons/fc";
 import { MdOutlinePendingActions } from "react-icons/md";
-import { BiCommentDetail } from "react-icons/bi";
+import { MdNotInterested } from "react-icons/md";
+import { FaRegCheckCircle } from "react-icons/fa";
 /********** assets **********/
 import logo from '../../assets/img/logo.svg'
 /********** react library **********/
@@ -20,8 +22,8 @@ const AdminSideBar = () => {
             <div className="admin-btn">
                 {/* <Link to=""><button>Overview <GoGraph/></button></Link> */}
                 <Link to="/pending"><button>Pending Post <MdOutlinePendingActions/></button></Link>
-                <Link to='/details'><button>Approve Details <BiCommentDetail/></button></Link>
-                <Link to='/reject'><button>Rejected  Details <BiCommentDetail/></button></Link>
+                <Link to='/details'><button>Approve Jobs <FaRegCheckCircle/></button></Link>
+                <Link to='/reject'><button>Rejected Jobs <MdNotInterested/></button></Link>
                 <Link to=""><button>Help</button></Link>
                 </div>
         </aside>

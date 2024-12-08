@@ -71,7 +71,9 @@ export const useHandleUpdate = () => {
   collar: '',
   status: 'pending', // Use a valid value
   created_at: '',
-  updated_at: ''
+  updated_at: '',
+  business_permit_path: '',
+  valid_id_path: ''
   })
 
     /* para maaccess yung update na value means mapapaltan pag wala nito hindi ma-access*/

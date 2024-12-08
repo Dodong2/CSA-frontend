@@ -1,5 +1,5 @@
 /********** react library **********/
-import { useEffect, useRef } from "react"
+import { useEffect, useState} from "react"
 /********** Hooks **********/
 import { useEmployerJobPosts } from "../../hooks/usePost"
 
@@ -38,7 +38,15 @@ const PostJobs = () => {
         handleFileChange
       } = useEmployerJobPosts();
 
-  
+      const [isModalVisible, setIsModalVisible] = useState(false);
+
+      const handleSubmit = async (e: React.FormEvent) => {
+        const result = await handleCreateJobPost(e);
+        if (result?.success) {
+          setIsModalVisible(true); // Show modal on success
+        }
+      };
+
       // Fetch job posts when component mounts
   useEffect(() => {
     fetchJobPosts();
@@ -62,8 +70,10 @@ const PostJobs = () => {
     </div>
     <div className="job-post-container">
     <div className="job-post-form">
-        <form onSubmit={handleCreateJobPost}>
+        <form onSubmit={handleSubmit}>
+          {/* layer 1 */}
         <div className="layer1">
+          {/* layer left */}
           <div className="post-left">
         <input type="text" placeholder="Business name,Company name or Job offer" value={formData.business_name} onChange={(e) => updateFormData('business_name',e.target.value)} /><br/>
         <input type="text" placeholder="Work Positions" value={formData.work_positions} onChange={handleWorkPositionChange} /><br/>
@@ -71,6 +81,7 @@ const PostJobs = () => {
         <input type="number" placeholder="contact number" value={formData.contact_number} onChange={(e) => updateFormData('contact_number',e.target.value)} /><br/>
         </div>
         <div className="post-right">
+          {/* layer right */}
         <input type="text" placeholder="locations" value={formData.locations} onChange={(e) => updateFormData('locations',e.target.value)} /><br/>
         <input type="text" placeholder="collar of your job" value={formData.collar} readOnly /><br/>
         <select value={formData.employment_type} onChange={(e) => updateFormData('employment_type', e.target.value)} >
@@ -79,19 +90,21 @@ const PostJobs = () => {
       <option value="Part-time">Part-time</option></select><br/>
         </div>
         </div>
+        {/* layer 2 */}
         <div className="layer2">
         <textarea rows={5} cols={50} placeholder="a Brief Descriptions" value={formData.descriptions} onChange={(e) => updateFormData('descriptions',e.target.value)} /><br/>
         <textarea rows={5} cols={50} placeholder="Explain Work schedule" value={formData.work_schedule} onChange={(e) => updateFormData('work_schedule',e.target.value)} /><br/>
         <textarea rows={5} cols={50} placeholder="Explain skills to be needed (optional)" value={formData.skills_required} onChange={(e) => updateFormData('skills_required',e.target.value)}/><br/>
         <textarea rows={5} cols={50} placeholder="Explain experience (optional)" value={formData.experience} onChange={(e) => updateFormData('experience',e.target.value)}/><br/>
-        <input
-        type="file"
-        onChange={(e) => handleFileChange('businessPermit', e.target.files ? e.target.files[0] : null)}
-    />
-    <input
-        type="file"
-        onChange={(e) => handleFileChange('validId', e.target.files ? e.target.files[0] : null)}
-    />
+        {/* layer 3 */}
+        <div className="layer3">
+        <div className="layer3-permit">
+        <p>Business permit</p>
+        <input type="file" onChange={(e) => handleFileChange('businessPermit', e.target.files ? e.target.files[0] : null)} required/></div>
+        <div className="layer3-permit">
+        <p>Valid ID</p>
+        <input type="file" onChange={(e) => handleFileChange('validId', e.target.files ? e.target.files[0] : null)} required/></div>
+        </div><br/>
         <button type="submit" disabled={loading}> {loading ? 'Posting...' : 'Post'}</button>
         </div>
         <div className="error">
@@ -101,6 +114,17 @@ const PostJobs = () => {
         </form>
         </div>
       </div>
+
+      {/* Modal */}
+      {isModalVisible && (
+        <div className="modal">
+          <div className="modal-content">
+            <h1>Successfully posted!</h1>
+            <p>Wait for admin approval.</p><br/>
+            <button onClick={() => setIsModalVisible(false)}>OK</button>
+          </div>
+        </div>
+      )}
     </>
   )
 }

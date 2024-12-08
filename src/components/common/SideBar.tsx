@@ -7,6 +7,8 @@ import { TiPlus } from "react-icons/ti";
 import { FaFolderPlus } from "react-icons/fa6";
 import { MdOutlineQuestionMark } from "react-icons/md";
 import { MdOutlineLogout } from "react-icons/md";
+/********** hooks **********/
+import { useAuth } from "../../hooks/useAuth";
 /********** components **********/
 import Modal1 from "./Modal1";
 
@@ -18,6 +20,7 @@ interface SidebarProps {
 
 const SideBar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     const [isModal1, setModal1] = useState<boolean>(false);
+    const { logout } = useAuth();
 
     //para sa modal logout
     if (isModal1) {
@@ -36,17 +39,20 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
             <Link to='/post'><button><TiPlus/>Post Job  </button></Link>
             <Link to='/view'><button><FaFolderPlus/> See Posts</button></Link>
             <Link to='/about'><button> <MdOutlineQuestionMark/> About Us</button></Link>
-            <button onClick={() => setModal1(!isModal1)}><MdOutlineLogout/>  Logout</button>
+            <button onClick={() => setModal1(true)}><MdOutlineLogout/>  Logout</button>
             </div>
         </div>
         {/* para sa modal logout */}
         {isModal1 && (
-          <div className="modal1 setopen">
-            <div
-              className="overlay1"
-              onClick={() => setModal1(false)}
-            ></div>
-            <Modal1 setModal1={setModal1} />
+                <div className="modal1 setopen">
+                    <div className="overlay1" onClick={() => setModal1(false)}></div>
+                    <Modal1
+                        setModal1={setModal1}
+                        onConfirmLogout={() => {
+                            logout(); // Call the logout function
+                            setModal1(false); // Close the modal after logout
+                        }}
+                    />
           </div>
         )}
         </>

@@ -41,6 +41,7 @@ const RejectedPost = () => {
               <th>Collar</th>
               <th>Status</th>
               <th>Date</th>
+              <th>Reject Reason</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -60,6 +61,7 @@ const RejectedPost = () => {
                 <td>{detail.collar}</td>
                 <td>{detail.status}</td>
                 <td>{detail.created_at}</td>
+                <td>{detail.rejection_reason}</td>
                 <td>
                 {/* <Link to={`/update/${detail.id}`}><button>view</button></Link><br/><br/> */}
                 <button onClick={() => removeDetails(detail.id)}><FaTrashCan/></button>

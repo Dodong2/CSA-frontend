@@ -23,7 +23,7 @@ const GraphPie = () => {
                             {
                                 label: 'Post Status Percentages',
                                 data: values,
-                                backgroundColor: ['#28a745', '#dc3545'],
+                                backgroundColor: ['#e74c3c', '#2ecc71', '#f1c40f'],
                                 borderColor: ['#218838', '#c82333'],
                                 borderWidth: 1,
                             },
