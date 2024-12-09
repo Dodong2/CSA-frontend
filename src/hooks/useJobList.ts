@@ -65,12 +65,14 @@ export const useJobLists = () => {
         }
     };
 
-    const removeDetails = async (id: string) => {
-        const result = await deleteDetails(id)
-        if (result.success) {
-            setJobLists(prev => prev.filter(detail => detail.id !== id))
-        }
+  const removeDetails = async (id: string) => {
+    const result = await deleteDetails(id);
+    if (result.success) {
+        setJobLists(prev => prev.filter(detail => detail.id !== id));
+    } else {
+        console.error("Failed to delete");
     }
+};
 
        //pang get ng mga job
        useEffect(() => {
