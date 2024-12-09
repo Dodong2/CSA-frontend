@@ -1,11 +1,12 @@
 import { useState, useCallback, useEffect } from 'react';
-import { JobPostRequest, JobPost } from '../utils/Types';
+import { JobPostRequest, JobPost, UpdateFormData } from '../utils/Types';
 import { 
   createJobPost, 
   getEmployerJobPosts, 
   getApprovedEmployerJobPosts,
   deleteJobPost 
 } from '../services/UserPostServices';
+import { getJobPostDetails } from '../services/AdminService';
 
 export const useEmployerJobPosts = () => {
   const [jobPosts, setJobPosts] = useState<JobPost[]>([])
@@ -116,45 +117,47 @@ useEffect(() => {
 
 
   //update hooks
-  const fetchDetailToUpdate = async (id: string, setUpdateData: (data: JobPost) => void) => {
-  if (!id || id === "id") {
-    console.error("Invalid ID passed:", id);
-    return;
-  }
-  setLoading(true);
-  try {
-    const data = await getApprovedEmployerJobPosts();
-    if (Array.isArray(data)) {
-      const detailsToEdit = data.find((detail: JobPost) => String(detail.id) === String(id));
-
-      setUpdateData(detailsToEdit || {
-        id: '',
-        business_name: '',
-        descriptions: '',
-        work_schedule: '',
-        skills_required: '',
-        experience: '',
-        employment_type: '',
-        work_positions: '',
-        company_email: '',
-        contact_number: '',
-        locations: '',
-        collar: '',
-        user_id: '',
-        status: 'pending', 
-        created_at: '', 
-        updated_at: '', 
-        business_permit_path: '',
-        valid_id_path: ''
-      });
-    } else {
-      console.error("Data is not an array:", data);
+  const fetchDetailToUpdate = async (id: string, setUpdateData: (data: UpdateFormData) => void) => {
+    if (!id || id === "id") {
+        console.error("Invalid ID passed:", id);
+        return;
     }
-  } catch (error) {
-    console.error("Failed to fetch detail for update:", error);
-  } finally {
-    setLoading(false);
-  }
+    
+    setLoading(true);
+    try {
+        const response = await getJobPostDetails(id);
+        
+        if (response.success) {
+            const detailsToEdit = response.jobPost;
+            
+            setUpdateData(detailsToEdit || {
+              id: '',
+              business_name: '',
+              descriptions: '',
+              work_schedule: '',
+              skills_required: '',
+              experience: '',
+              employment_type: '',
+              work_positions: '',
+              company_email: '',
+              contact_number: '',
+              locations: '',
+              collar: '',
+              user_id: '',
+              status: 'pending', 
+              created_at: '', 
+              updated_at: '', 
+              business_permit_path: '',
+              valid_id_path: ''
+            });
+        } else {
+            console.error("Failed to fetch job post details:", response.message);
+        }
+    } catch (error) {
+        console.error("Failed to fetch detail for update:", error);
+    } finally {
+        setLoading(false);
+    }
 };
 
   // Delete a job post

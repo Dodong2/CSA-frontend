@@ -4,9 +4,6 @@
 }
 
 /********** All around button animation **********/
-.btn:active {
-  transform: scale(0.95);
-}
 .back {
   padding: 10px;
   margin-left: 20px;
@@ -153,9 +150,11 @@
   color: var(--primary-text-light);
 }
 
-.button1:active, .button2:active {
+.btn button:active {
   transform: scale(0.95);
 }
+
+
 
 /********** login **********/
 .login {
@@ -416,8 +415,13 @@ nav {
   color: var(--primary-color);
   font-size: clamp(1rem, 5vw, 1.5rem);
 }
-
-
+ .error-otp {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .navbar-menu {
   position: relative;

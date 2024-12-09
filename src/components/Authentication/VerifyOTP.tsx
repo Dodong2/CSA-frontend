@@ -31,7 +31,9 @@ const VerifyOTP = () => {
                 {loading ? 'Verifying...' : 'Verify OTP'}
             </button>
         </form>
-        {error && <p style={{color: 'red'}}>{error}</p>}
+        <div className="error-otp">
+        {error && <p style={{color: 'red'}} >{error}</p>}
+        </div>  
       </div>
     </>
   )

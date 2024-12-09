@@ -166,3 +166,21 @@ export const getRejected = async () => {
     }
 }
 
+export const getJobPostDetails = async (id: string) => {
+    try {
+        const response = await fetch(`http://localhost/Career Search Agency/admin.php?action=update_list&id=${id}`, {
+            method: 'GET',
+            credentials: 'include',
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const result = await response.json();
+        return result;
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return { success: false, jobPost: null }; 
+    }
+}

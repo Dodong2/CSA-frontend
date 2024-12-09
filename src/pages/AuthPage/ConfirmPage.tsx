@@ -15,7 +15,7 @@ const ConfirmPage = () => {
           <img src={svg3} alt="svg3" />
         </div>
         <div className="title-txt">
-          <h1>Confirmations</h1>
+          <h1>Confirmation</h1>
           <p>To ensure your username, Email and password</p>
         </div>
         <Login/>

@@ -164,7 +164,7 @@ export const getJobs = async () => {
         }
 
         const result = await response.json()
-        console.log("Fetched data:", result);
+        // console.log("Fetched data:", result);
         return result
 
     } catch (error) {

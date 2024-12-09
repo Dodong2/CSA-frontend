@@ -3,13 +3,14 @@ import { useJobLists } from "../../hooks/useJobList"
 /********** icon **********/
 import { FaTrashCan } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Loading from "../common/Loading";
 
 const Details = () => {
     const {loading, joblists, removeDetails} = useJobLists()
 
  // If no job posts, show loading or a message
   if (loading) {
-    return <p>Loading job posts...</p>;
+    return <Loading/>;
   }
 
     const truncateText = (text: string, wordLimit: number): string => {
