@@ -1,3 +1,4 @@
+import { useState } from "react";
 /********** hooks **********/
 import { useJobLists } from "../../hooks/useJobList"
 /********** icon **********/
@@ -7,6 +8,21 @@ import Loading from "../common/Loading";
 
 const Details = () => {
     const {loading, joblists, removeDetails} = useJobLists()
+    const [isDeleteModalVisible, setDeleteModalVisible] = useState<boolean>(false); 
+    const [selectedJobId, setSelectedJobId] = useState<string | null>(null);
+
+    const handleDelete = (jobId: string) => {
+      setSelectedJobId(jobId); // Store the string ID
+      setDeleteModalVisible(true); // Show the delete modal
+    };
+
+    const confirmDelete = () => {
+      if (selectedJobId !== null) {
+        removeDetails(selectedJobId); // Pass the string ID to the delete function
+      }
+      setDeleteModalVisible(false); // Close the modal
+      setSelectedJobId(null); // Reset the selected ID
+    };
 
  // If no job posts, show loading or a message
   if (loading) {
@@ -62,7 +78,7 @@ const Details = () => {
                 <td>{detail.created_at}</td>
                 <td>
                 <Link to={`/update/${detail.id}`}><button>view</button></Link><br/><br/>
-                <button onClick={() => removeDetails(detail.id)}><FaTrashCan/></button>
+                <button onClick={() => handleDelete(detail.id)}><FaTrashCan/></button>
                 </td>
               </tr>
             ))}
@@ -70,6 +86,21 @@ const Details = () => {
         </table>
         </div>
         </div>
+
+
+        {/* Delete Confirmation Modal */}
+      {isDeleteModalVisible && (
+        <div className="modal">
+          <div className="modal-content">
+            <h1>Confirm Delete</h1>
+            <p>Are you sure you want to delete this job post?</p><br/>
+            <div className="modal-content-actions">
+              <button onClick={confirmDelete}>Yes</button>
+              <button onClick={() => setDeleteModalVisible(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

@@ -95,7 +95,12 @@ const JobLists = () => {
     {loading && <p>Loading...</p>}
 
     {/* validations para kung walanng jobs */}
-    {!loading && joblists.length === 0 && <p>No job posts available.</p>}
+    {!loading && joblists.length === 0 && <div className="no-results">
+        <div className="no-result-img">
+      <img src={noresult} alt="noresult"/>
+      </div>
+      <p>No Job Post Available</p>
+    </div>}
 
     {/* validations kung hindi existing yung search jobs */}
     {!loading && searchQuery && filteredDetails.length === 0 && (

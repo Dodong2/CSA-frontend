@@ -46,13 +46,13 @@ const UpdatePost:React.FC<UpdateDetailsProps> = ({ id }) => {
       <div className="layer1">
       <div className="post-left">
         <input type="text" placeholder="Business name,Company name or Job offer" name="business_name" value={updateData?.business_name || ''} onChange={handleChange} required/><br/>
-        <input type="text" placeholder="Work Positions" name="work_positions" value={updateData?.work_positions || ''} onChange={handleChange} required/><br/>
+        <input type="text" placeholder="Work Positions" name="work_positions" value={updateData?.work_positions || ''} onChange={handleChange} disabled required  style={{ backgroundColor: "#f5f5f5", color: "#a9a9a9", border: "1px solid #ccc", cursor: "not-allowed", opacity: "0.7", }}/><br/>
         <input type="text" placeholder="Company/Business email" name="company_email" value={updateData?.company_email || ''} onChange={handleChange} required/><br/>
         <input type="text" placeholder="contact number" name="contact_number" value={updateData?.contact_number || ''} onChange={handleChange} required/><br/>
         </div>
         <div className="post-right">
         <input type="text" placeholder="locations" name="locations" value={updateData?.locations || ''} onChange={handleChange} required/><br/>
-        <input type="text" placeholder="collar of your job" name="collar" value={updateData?.collar || ''} onChange={handleChange} required/><br/>
+        <input type="text" placeholder="collar of your job" name="collar" value={updateData?.collar || ''} onChange={handleChange} disabled required  style={{ backgroundColor: "#f5f5f5", color: "#a9a9a9", border: "1px solid #ccc", cursor: "not-allowed", opacity: "0.7", }}/><br/>
         <input type="text" placeholder="Emplyment Type" name="employment_type" value={updateData?.employment_type || ''} onChange={handleChange} required/><br/>
         </div>
         </div>
@@ -74,13 +74,14 @@ const UpdatePost:React.FC<UpdateDetailsProps> = ({ id }) => {
               {updateData.valid_id_path && (
                 <img src={`http://localhost/Career%20Search%20Agency/${updateData.valid_id_path}`} alt="Valid ID" onClick={() => openModal(`http://localhost/Career%20Search%20Agency/${updateData.valid_id_path}`)}/>
               )}</div></div>
+
         <button type="submit" disabled={loading}> {loading ? 'updating...' : 'update'}</button>
         
         </div>
         </form>
       </div>
       </div>
-
+        {/* modal for Image */}
       <Modal isOpen={isModalOpen} onRequestClose={closeModal} style={{
         content: {
           maxWidth: '60%',
@@ -92,11 +93,14 @@ const UpdatePost:React.FC<UpdateDetailsProps> = ({ id }) => {
           justifyContent: 'center',  
           flexDirection: 'column',
         },
-
       }}> <img src={modalImage} alt="Zoomed Image" style={{ maxWidth: "100%", maxHeight: "100%", width: '80%' }} />
         <button onClick={closeModal} className="img-close">
           <IoClose/>
         </button></Modal>
+
+
+
+
     </>
   )
 }

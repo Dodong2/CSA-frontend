@@ -1,6 +1,7 @@
 // import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useEmployerJobPosts } from "../../hooks/usePost"
+import { useJobLists } from '../../hooks/useJobList';
 import { FaTrashCan } from "react-icons/fa6";
 
 
@@ -14,6 +15,8 @@ const ViewPost = () => {
     fetchApprovedJobPosts,
     handleDeleteJobPost
   } = useEmployerJobPosts();
+
+  const { joblists } = useJobLists()
 
   useEffect(() => {
     fetchJobPosts();
@@ -35,44 +38,6 @@ const ViewPost = () => {
   return (
     <>
       <div className='job-view'>
-        <h3>Pending Job Posts</h3>
-        <table>
-          <thead>
-            <tr>
-              <th>Business Name</th>
-              <th>Descriptions</th>
-              <th>Work Schedule</th>
-              <th>Employment Type</th>
-              <th>Work Positions</th>
-              <th>Company Email</th>
-              <th>Contact Number</th>
-              <th>Locations</th>
-              <th>Collar</th>
-              <th>Skills Required</th>
-              <th>Experience</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {jobPosts?.map((post) => (
-              <tr key={post.id}>
-                <td>{post.business_name}</td>
-                <td>{post.descriptions}</td>
-                <td>{post.work_schedule}</td>
-                <td>{post.employment_type}</td>
-                <td>{post.work_positions}</td>
-                <td>{post.company_email}</td>
-                <td>{post.contact_number}</td>
-                <td>{post.locations}</td>
-                <td>{post.collar}</td>
-                <td>{post.skills_required}</td>
-                <td>{post.experience}</td>
-                <td>{post.status}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
         <div className='table-container'>
         <h3>Approved Job Posts</h3><br/>
         <table>
@@ -94,7 +59,7 @@ const ViewPost = () => {
             </tr>
           </thead>
           <tbody>
-            {approvedJobPosts?.map((post) => (
+            {joblists?.map((post) => (
               <tr key={post.id}>
                 <td>{post.business_name}</td>
                 <td>{truncateText(post.descriptions, 5)}</td>

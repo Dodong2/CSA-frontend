@@ -1,5 +1,5 @@
 /********** react library **********/
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 /********** icons **********/
 import { IoClose } from "react-icons/io5";
@@ -21,6 +21,13 @@ interface SidebarProps {
 const SideBar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
     const [isModal1, setModal1] = useState<boolean>(false);
     const { logout } = useAuth();
+    const [isPostModalVisible, setPostModalVisible] = useState<boolean>(false);
+    const navigate = useNavigate();
+
+    const handlePostJobContinue = () => {
+        setPostModalVisible(false);
+        navigate("/post");
+      };
 
     //para sa modal logout
     if (isModal1) {
@@ -36,7 +43,7 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
         <div className={`sidebar ${isOpen ? 'open' : ''}`}>
         <div className="sidebar-close"><button onClick={toggleSidebar}>{ isOpen ? <IoClose/> : <IoClose/>}</button></div>     
             <div className="sidebar-content">
-            <Link to='/post'><button><TiPlus/>Post Job  </button></Link>
+            <button onClick={() => setPostModalVisible(true)}><TiPlus/>Post Job  </button>
             <Link to='/view'><button><FaFolderPlus/> See Posts</button></Link>
             <Link to='/about'><button> <MdOutlineQuestionMark/> About Us</button></Link>
             <button onClick={() => setModal1(true)}><MdOutlineLogout/>  Logout</button>
@@ -55,6 +62,22 @@ const SideBar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar }) => {
                     />
           </div>
         )}
+    {/* Modal para kung employer need niya mag-agree */}
+      {isPostModalVisible && (
+        <div className="modal">
+          <div className="modal-content">
+            <h1>Employer post</h1>
+            <p>Only employers can proceed.</p>
+            <p> Valid credentials required.</p>
+            <p>Are you an employer?</p>
+            <br/>
+            <div className="modal-content-actions">
+            <button onClick={handlePostJobContinue}>Yes</button><br/>
+            <button onClick={() => setPostModalVisible(false)}>Cancel</button>
+            </div>
+          </div>
+        </div>
+      )}
         </>
     );
 };

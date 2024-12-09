@@ -173,3 +173,23 @@ export const getJobs = async () => {
     }
 }
 
+export const getApproved_jobs = async () => {
+    try {
+        const response = await fetch('http://localhost/Career Search Agency/employer.php?action=user_approved_joblist', {
+            method: 'GET',
+            credentials: 'include', // Important for session-based authentication
+        });
+        
+        if(!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`)
+        }
+
+        const result = await response.json();
+        console.log("Fetched data:", result);
+        return result;
+
+    } catch (error) {
+        console.error("Fetch error:", error);
+        return { success: false, joblists: [] }; 
+    }
+}

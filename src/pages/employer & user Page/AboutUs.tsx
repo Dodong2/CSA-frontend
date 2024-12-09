@@ -31,7 +31,6 @@ const AboutUs = () => {
             <p>Carl Stephen Arocha</p>
             <p>Alison Rrysaldi C Dizon</p>
             <p>Vaughn Rovin Gironella</p>
-            <p>Brix Gloria</p>
             <h1>Team Email</h1>
             <p>careersearchagency@gmail.com</p>
             </div> 

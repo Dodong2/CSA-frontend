@@ -24,8 +24,7 @@ const AdminSideBar = () => {
                 <Link to="/pending"><button>Pending Post <MdOutlinePendingActions/></button></Link>
                 <Link to='/details'><button>Approve Jobs <FaRegCheckCircle/></button></Link>
                 <Link to='/reject'><button>Rejected Jobs <MdNotInterested/></button></Link>
-                <Link to=""><button>Help</button></Link>
-                </div>
+                  </div>
         </aside>
     </div>
     </>

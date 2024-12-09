@@ -49,9 +49,9 @@ export const verifyRegistration = async (email: string, otp: string) => {
 }
 
 //Login
-export const loginAcc = async(email: string, password: string) => {
+export const loginAcc = async(input: string, password: string) => {
     const formData = new FormData()
-    formData.append('email', email)
+    formData.append('input', input)
     formData.append('password', password)
 
     const response = await fetch('http://localhost/Career Search Agency/reglog.php?action=login', {

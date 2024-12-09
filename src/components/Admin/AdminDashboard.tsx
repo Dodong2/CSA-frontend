@@ -7,6 +7,7 @@ import { useEmployerJobPosts } from "../../hooks/usePost"
 /********** components **********/
 import Graphs from "./Graphs";
 import GraphPie from "./GraphPie";
+import GraphDoughnut from "./GraphDoughnut";
 
 const AdminDashboard = () => {
   
@@ -23,9 +24,12 @@ const AdminDashboard = () => {
       <div className="dashboard-container">
         <div className="dashboard-title"><h1>Dashboard</h1></div>
         <div className="graphs">
-          <p></p>
+          {/* graphs */}
       <Graphs/>
       <GraphPie/>
+      </div><br/>
+      <div className="graphs-layer1">
+      <GraphDoughnut/>
       </div>
       
       </div>

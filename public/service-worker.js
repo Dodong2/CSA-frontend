@@ -11,6 +11,30 @@ const urlsToCache = [
   // Add other assets you want to cache
 ];
 
+
+// Add push notification event listener
+self.addEventListener('push', (event) => {
+  const data = event.data?.json();
+  
+  const options = {
+    body: data.body,
+    icon: '/path/to/your/icon.png', // Replace with your app icon
+    badge: '/path/to/your/badge.png' // Optional badge icon
+  };
+
+  event.waitUntil(
+    self.registration.showNotification(data.title, options)
+  );
+});
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close();
+  
+  event.waitUntil(
+    self.clients.openWindow('/job-posts') // Replace with your desired route
+  );
+});
+
 // Install event listener: cache all necessary assets
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -24,6 +48,7 @@ self.addEventListener('install', (event) => {
       })
   );
 });
+
 
 
 // Activate event listener: clean up old caches if necessary
@@ -68,3 +93,4 @@ self.addEventListener('fetch', (event) => {
       })
   );
 });
+

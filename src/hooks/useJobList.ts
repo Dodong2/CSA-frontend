@@ -72,6 +72,19 @@ export const useJobLists = () => {
         }
     }
 
+       //pang get ng mga job
+       useEffect(() => {
+        const JobsLists = async () => {
+            setLoading(true)
+            const result = await getJobs()
+            if(result.success) {
+                setJobLists(result.joblists)
+            }
+            setLoading(false)
+        }
+        JobsLists()
+    }, [])
+
     return { 
         loading, 
         joblists, 

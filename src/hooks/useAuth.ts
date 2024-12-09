@@ -57,11 +57,11 @@ export const useAuth = () => {
     }
 
     //Login Hooks
-    const login = async (email:string, password:string) => {
+    const login = async (input: string, password:string) => {
         setLoading(false)
         setError(null)
         try {
-            const result = await loginAcc(email, password)
+            const result = await loginAcc(input, password)
             if (result.success) {
                 navigate('/home')
             } else {
